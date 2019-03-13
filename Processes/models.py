@@ -35,7 +35,7 @@ class Activity(models.Model):
     role = models.ManyToManyField('Role')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'Activity'
 
 

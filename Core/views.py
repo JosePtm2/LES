@@ -7,7 +7,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def Home(request):
-    if request.user.username == 'admin':
-        return render(request, 'menuanalista.html')
-    else:
-        return render(request, 'menugestor.html')
+    return render(request, 'main/home.html')

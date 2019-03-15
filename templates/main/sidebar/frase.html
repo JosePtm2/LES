@@ -1,0 +1,14 @@
+{% for perm in permissions %}
+{% if perm.name == "Can view sentence" %}
+<li>
+	<a href="#"><i class="material-icons">play_arrow</i> Frases</a>
+</li>
+{% endif %}
+{% if perm.name == "Can view verb" %}
+<ul class="list-unstyled">
+	<li>
+		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Verbos</a>
+	</li>
+</ul>
+{% endif %}
+{% endfor %}

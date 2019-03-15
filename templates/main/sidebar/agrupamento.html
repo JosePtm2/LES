@@ -1,5 +1,7 @@
-{% if user.profile.permission.agrupamento.read %}
+{% for perm in permissions %}
+{% if perm.name == "Can view group" %}
 <li>
 	<a href="#"><i class="material-icons">play_arrow</i> Agrupamentos</a>
 </li>
 {% endif %}
+{% endfor %}

@@ -1,3 +1,5 @@
-{% if user.profile.permission.atividade.create %}
+{% for perm in permissions %}
+{% if perm.name == "Can add activity" %}
 <a class="dropdown-item" href="#">Atividade</a>
 {% endif %}
+{% endfor %}

@@ -1,4 +1,5 @@
-{% if user.profile.permission.frase.read %}
+{% for perm in permissions %}
+{% if perm.name == "Can view sentence" %}
 <li>
 	<a href="#"><i class="material-icons">play_arrow</i> Frases</a>
 </li>
@@ -8,3 +9,4 @@
 	</li>
 </ul>
 {% endif %}
+{% endfor %}

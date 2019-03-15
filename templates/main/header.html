@@ -3,12 +3,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Registo diário</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="{% static 'css/googleapis.css' %}">
 		<!-- Bootstrap CSS CDN -->
-		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %} ">
-		<link rel="stylesheet" href="{% static 'js/bootstrap.js' %} ">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 		<!-- Our Custom CSS -->
 		<link rel="stylesheet" href="{% static 'css/login.css' %}">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
 		<!-- Font Awesome JS -->
 		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -38,28 +38,5 @@
 			});
 		</script>
 </head>
-
-<form class="form-signin" method="post" action="{% url 'login' %}"> {% csrf_token %}
-  <h2>LOGIN</h2><br>
-  <div class="text-left">Utilizador</div>
-  {{ form.username }}
-  <p class="nameErr text-danger text-left"></p>
-  <br><div class="text-left">Senha</div>
-  {{ form.password }}
-  <br><div class="fluid-container">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="checkbox text-left">
-          <input type="checkbox" value="remember-me" class=""> Remember me<br>
-          <a href="#">Recuperar senha</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="right">
-          <button class="btn btn-lg btn-block text-white" style="max-width:15vh;float:right;" type="submit">Login</button><!--bg-info-->
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-	
+{% block navbar %}
+{% endblock %}

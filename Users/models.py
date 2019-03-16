@@ -49,7 +49,7 @@ class Organization(models.Model):
                                             max_length=255,
                                             blank=True,
                                             null=True)
-											
+
     class Meta:
         managed = True
         db_table = 'Organization'
@@ -57,13 +57,14 @@ class Organization(models.Model):
     def __str__(self):
         return self.organizationname
 
-		
+
 class User(AbstractUser):
     id = models.AutoField(db_column='ID', primary_key=True)
 
     organizationid = models.ForeignKey(Organization,
-                                       models.CASCADE,
-                                       db_column='OrganizationID')
+                                        models.CASCADE,
+                                        null=True,
+                                        db_column='OrganizationID')
     user_profile = models.ManyToManyField('Profile')
     username = models.CharField(db_column='UserName',
                                 max_length=255,
@@ -87,4 +88,4 @@ class User(AbstractUser):
     class Meta:
         managed = True
         db_table = 'User'
-        
+

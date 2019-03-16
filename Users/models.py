@@ -62,9 +62,9 @@ class User(AbstractUser):
     id = models.AutoField(db_column='ID', primary_key=True)
 
     organizationid = models.ForeignKey(Organization,
-                                        models.CASCADE,
-                                        null=True,
-                                        db_column='OrganizationID')
+                                       models.CASCADE,
+                                       null=True,
+                                       db_column='OrganizationID')
     user_profile = models.ManyToManyField('Profile')
     username = models.CharField(db_column='UserName',
                                 max_length=255,
@@ -88,4 +88,3 @@ class User(AbstractUser):
     class Meta:
         managed = True
         db_table = 'User'
-

@@ -49,7 +49,7 @@ class Organization(models.Model):
                                             max_length=255,
                                             blank=True,
                                             null=True)
-											
+
     class Meta:
         managed = True
         db_table = 'Organization'
@@ -57,7 +57,7 @@ class Organization(models.Model):
     def __str__(self):
         return self.organizationname
 
-		
+
 class User(AbstractUser):
     id = models.AutoField(db_column='ID', primary_key=True)
 
@@ -87,4 +87,4 @@ class User(AbstractUser):
     class Meta:
         managed = True
         db_table = 'User'
-        
+

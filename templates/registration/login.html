@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %} ">
 		<link rel="stylesheet" href="{% static 'js/bootstrap.js' %} ">
 		<!-- Our Custom CSS -->
-		<link rel="stylesheet" href="{% static 'css/login.css' %}">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
 		<!-- Font Awesome JS -->
         <link rel="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
         <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -24,42 +24,31 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 		
 </head>
-<div class="mdc-card">
-<form class="form-signin" method="post" action="{% url 'login' %}"> {% csrf_token %}
-  <h2>LOGIN</h2><br>
-  <div class="text-left">Utilizador</div>
-  {{ form.username }}
-  <p class="nameErr text-danger text-left"></p>
-  <br><div class="text-left">Senha</div>
-  {{ form.password }}
-  <br><div class="fluid-container">
-    <div class="row">
-      <div class="col-12 mt-4">
-        <div class="checkbox text-left">
-          <input type="checkbox" value="remember-me" class=""> Remember me<br>
-          <a href="#">Recuperar senha</a>
-        </div>
-      </div>
-      <div class="col-12 mt-4">
-        <div class="center">
-          <button class="btn btn-lg btn-block text-white" style="max-width:15vh;float:center;" type="submit">Login</button><!--bg-info-->
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-</div>
-
-
-
-
-<div class="mdc-form-field mdc-form-field--align-end">
-  <div class="mdc-checkbox">
-    <input type="checkbox" id="my-checkbox" class="mdc-checkbox__native-control"/>
-    <div class="mdc-checkbox__background">
-      ...
-    </div>
-  </div>
-  <label for="my-checkbox">This is my checkbox</label>
-</div>
-	
+<body class="text-center"><br>
+	<div class="container my-5">
+		<form class="form-signin" method="post" action="{% url 'login' %}" style="background:#FFF; max-width:500px;margin: 0 auto; padding:16px;"> {% csrf_token %}
+			<h1>REGISTO DIÁRIO</h1><br>
+			<h2>LOGIN</h2><br>
+			<div class="text-left">Utilizador</div>
+			<div class="text-left">{{ form.username }}</div>
+			<p class="nameErr text-danger text-left"></p>
+			<br><div class="text-left">Senha</div>
+			<div class="text-left">{{ form.password }}</div>
+			<br><div class="fluid-container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="checkbox text-left">
+							<input type="checkbox" value="remember-me" class=""> Remember me<br>
+							<a href="#">Recuperar senha</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="center">
+							<button class="btn btn-lg btn-block text-white" style="max-width:15vh;float:right;" type="submit">Login</button><!--bg-info-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
+	</body>

@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body{
     font-family: 'Poppins', sans-serif;
     background: #eee;
@@ -213,7 +214,7 @@ td a:hover{
 }
 .header-fixed > tbody {
     overflow-y: auto;
-    max-height: 50vh;
+    max-height: 10vh;
 }
 .header-fixed > tbody > tr > td,
 .header-fixed > thead > tr > th {
@@ -250,6 +251,7 @@ form div{
 .buttonHover:hover{
 	background:#036074;
 }
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */

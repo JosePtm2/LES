@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + ('organizationid',)
 
 
-class MyUserAdmin(admin.ModelAdmin):
+class MyUserAdmin(UserAdmin):
         add_form = CustomUserCreationForm
         fieldsets = UserAdmin.fieldsets + (
                 (None, {'fields': ('organizationid',)}),

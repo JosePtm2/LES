@@ -1,13 +1,7 @@
-﻿ {% extends "main/navbar.html" %}
+ {% extends "main/navbar.html" %}
  
  {% block content %}
 	<div class="container">
-	{% for perm in permissions %}
-		{% if perm.name == "Can add user" %}
-			{% include "main/tables/users.html" %}
-		{% elif perm.name == "Can add sentence" %}
-			{% include "main/tables/frases.html" %}
-		{% endif %}
-	{% endfor %}
+			
 		</div>
   {% endblock %}

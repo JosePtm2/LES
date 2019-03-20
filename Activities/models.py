@@ -28,7 +28,7 @@ class Pattern(models.Model):
                              null=True)
     description = models.CharField(db_column='Description',
                                    max_length=255)
-    data_creation = models.DateField(db_column='Data Creation')
+    data_creation = models.DateField(db_column='Data Creation', null=True)
 
     class Meta:
         managed = True
@@ -70,16 +70,16 @@ class Sentence(models.Model):
                                db_column='UserID')
     sentencename = models.CharField(db_column='SentenceName',
                                     max_length=255)
-    datecreated = models.DateField(db_column='DateCreated')
+    datecreated = models.DateField(db_column='DateCreated', null=True)
     subject = models.CharField(db_column='Subject',
                                max_length=255)
     receiver = models.CharField(db_column='Receiver',
                                 max_length=255,
                                 blank=True,
                                 null=True)
-    datarealizado = models.DateField(db_column='DataRealizado')
+    datarealizado = models.DateField(db_column='DataRealizado', null=True)
     artefacto = models.CharField(db_column='Artefacto',
-                                 max_length=255)
+                                 max_length=255, null=True)
     verbid = models.ForeignKey('Verb',
                                models.DO_NOTHING,
                                db_column='VerbID')

@@ -33,6 +33,7 @@ class Activity(models.Model):
                                  null=True)
     pattern = models.ManyToManyField('Activities.Pattern')
     role = models.ManyToManyField('Role')
+    data_creation = models.DateField(db_column='Data Creation', null=True)
 
     class Meta:
         managed = True

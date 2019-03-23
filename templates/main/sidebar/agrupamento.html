@@ -1,5 +1,5 @@
-{% if user.profile.permission.agrupamento.read %}
+{% if perms.Activities.view_group %}
 <li>
-	<a href="#"><i class="material-icons">play_arrow</i> Agrupamentos</a>
+	<a href='{% url "group_list" %}'><i class="material-icons">play_arrow</i> Agrupamentos</a>
 </li>
 {% endif %}

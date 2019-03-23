@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
 # Create your models here.
 
 
@@ -55,12 +54,16 @@ class Organization(models.Model):
         managed = True
         db_table = 'Organization'
 
+    def __str__(self):
+        return self.organizationname
+
 
 class User(AbstractUser):
     id = models.AutoField(db_column='ID', primary_key=True)
 
     organizationid = models.ForeignKey(Organization,
                                        models.CASCADE,
+                                       null=True,
                                        db_column='OrganizationID')
     user_profile = models.ManyToManyField('Profile')
     username = models.CharField(db_column='UserName',

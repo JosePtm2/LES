@@ -1,5 +1,5 @@
-{% if user.profile.permission.padrao.read %}
+{% if perms.Activities.view_pattern %}
 <li>
-	<a href="#"><i class="material-icons">play_arrow</i> Padrões</a>
+	<a href='{% url "pattern_list" %}'><i class="material-icons">play_arrow</i> Padrões</a>
 </li>
 {% endif %}

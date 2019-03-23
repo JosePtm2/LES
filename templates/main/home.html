@@ -1,7 +1,23 @@
- {% extends "main/navbar.html" %}
- 
+ {% extends "main/navbar.html" %} 
  {% block content %}
 	<div class="container">
-			
+    {% if perms.Users.add_user %}
+        {% include "tables/user.html" %}
+    {% endif %}
+    {% if perms.Activities.add_sentence %}
+        {% include "tables/sentence.html" %}
+    {% endif %}
+    {% if perms.Activities.add_group %}
+        {% include "tables/group.html" %}
+    {% endif %}
+    {% if perms.Activities.add_pattern %}
+        {% include "tables/pattern.html" %}
+    {% endif %}
+    {% if perms.Processes.add_process %}
+        {% include "tables/process.html" %}
+    {% endif %}
+    {% if perms.Processes.add_activity %}
+        {% include "tables/activity.html" %}
+    {% endif %}
 		</div>
   {% endblock %}

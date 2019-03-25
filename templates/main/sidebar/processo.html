@@ -1,18 +1,22 @@
-{% for perm in permissions %}
-{% if perm.name == "Can view process" %}
+{% if perms.Processes.view_process %}
 <li>
 	<a href="#"><i class="material-icons">play_arrow</i> Processos</a>
 </li>
+{% endif %}
 <ul class="list-unstyled components">
+    {% if perms.Processes.view_activity %}
 	<li>
 		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Atividades</a>
 	</li>
+    {% endif %}
+     {% if perms.Processes.view_role %}
 	<li>
 		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Papéis</a>
 	</li>
+    {% endif %}
+    {% if perms.Processes.view_product %}
 	<li>
 		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Produtos</a>
 	</li>
+    {% endif %}
 </ul>
-{% endif %}
-{% endfor %}

@@ -1,5 +1,3 @@
-{% for perm in permissions %}
-{% if perm.name == "Can add pattern" %}
+{% if perms.Activities.add_pattern %}
 <a class="dropdown-item" href="#">Padrão</a>
 {% endif %}
-{% endfor %}

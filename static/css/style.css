@@ -2,13 +2,13 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background: #eee;
+    background: #f9f9f9;
 }
 body::-webkit-scrollbar {
     width: 0.5em;
 }
 body::-webkit-scrollbar-track ,.header-fixed > tbody::-webkit-scrollbar-track{
-    background-color:#CCCCCC;
+    background-color:#CCC;
 }
 body::-webkit-scrollbar-thumb, .header-fixed > tbody::-webkit-scrollbar-thumb {
   background-color:#767676;

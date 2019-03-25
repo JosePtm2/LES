@@ -1,5 +1,3 @@
-{% for perm in permissions %}
-{% if perm.name == "Can add user" %}
+{% if perms.Users.add_user %}
 <a class="dropdown-item" href="#">Utilizador</a>
 {% endif %}
-{% endfor %}

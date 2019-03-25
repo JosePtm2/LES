@@ -1,6 +1,6 @@
 {% extends "main/header.html" %}
 {% block navbar %}
-<body>  
+<body style="background:#f9f9f9">  
 <div class="wrapper">
 <nav id="sidebar" class="navbar-info" style="background:#058096;"><!--bg-info-->
 	<div class="sidebar-header" style="background:#058096;"><!--bg-info-->
@@ -8,14 +8,14 @@
 	</div>
 	<ul class="list-unstyled components">
 		<li class="active">
-			<a href=""><i class="material-icons">home</i> PÁGINA INICIAL</a>
+			<a href='{% url "home" %}'><i class="material-icons">home</i> PÁGINA INICIAL</a>
 		</li>
 	</ul>
 	<ul class="list-unstyled components">
-		{% include "main/sidebar/frase.html" %}
-		{% include "main/sidebar/agrupamento.html" %}
-		{% include "main/sidebar/padrao.html" %}
-		{% include "main/sidebar/processo.html" %}
+            {% include "main/sidebar/frase.html" %}
+            {% include "main/sidebar/agrupamento.html" %}
+            {% include "main/sidebar/padrao.html" %}
+            {% include "main/sidebar/processo.html" %}
 	</ul>
 	<div class="CTAs">
 		<a href="#"><i class="material-icons">help_outline</i></a>
@@ -43,11 +43,24 @@
 								</button>
 								<div class="dropdown-menu dropdown-menu-right" role="menu">
 									<a class="dropdown-item" href="#">Tudo</a>
+                                    {% if perms.Activities.view_sentence %}
 									<a class="dropdown-item" href="#">Frase</a>
+                                    {% endif %}
+                                    {% if perms.Activities.view_verb %}
+									<a class="dropdown-item" href="#">Verbo</a>
+                                    {% endif %}
+                                    {% if perms.Activities.view_group %}
 									<a class="dropdown-item" href="#">Agrupamentos</a>
+                                    {% endif %}
+                                    {% if perms.Activities.view_pattern %}
 									<a class="dropdown-item" href="#">Padrões</a>
+                                    {% endif %}
+                                    {% if perms.Processes.view_activity %}
 									<a class="dropdown-item" href="#">Atividades</a>
+                                    {% endif %}
+                                    {% if perms.Processes.view_process %}
 									<a class="dropdown-item" href="#">Processos</a>
+                                    {% endif %}
 								</div>
 							</div>
 							<button class="btn text-white">

@@ -1,7 +1,4 @@
-<h1>Verb Update</h1>
-
 <form  method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit"  value="Submit"  />
+    {% csrf_token %}
+    {{ form.as_p }}
 </form>

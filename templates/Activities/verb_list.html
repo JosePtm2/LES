@@ -1,6 +1,49 @@
- {% extends "main/navbar.html" %} 
- {% block content %}
- <div class="container">
- {% include "tables/verb.html" %}
- </div>
- {% endblock %}
+{% extends "main/navbar.html" %} 
+{% block content %}
+    <div class="container-fluid" style=" margin-top:-25px;">
+        <div class="row">
+            <div class="navegation">
+                <a href='{% url "home" %}'><i class="material-icons">home</i></a>
+                <i class="material-icons" style="position:relative; top:5px;">keyboard_arrow_right</i>
+                <b><span class="text-dark">Verbos</span></b>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% include "tables/verb.html" %}
+        <div class="modal fade" data-backdrop="static" id="newVerb" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Novo verbo</h2>
+                        <a class="close text-danger" data-dismiss="modal" aria-label="Close">
+                            <span>&times;</span>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                    {% include "Activities/verb_form.html" %}
+                    </div>
+                    <div class="modal-footer">
+                        <a class="text-danger mr-3" href="" data-dismiss="modal">Cancelar</a>
+                        <button type="submit" value="submit" class="btn text-white">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $(".newVerb").click(function () {
+                var btn = $(this);
+                $.ajax({
+                    type: 'get',
+                    dataType:'json',
+                    beforeSend: function(){
+                        $('#newVerb').modal('show');
+                        $('#newVerb .modal-body').load("{% url 'verb_create' %}");
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock %}

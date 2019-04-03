@@ -1,8 +1,8 @@
 <table class="table table-hover header-fixed my-5">
     <thead>
       <tr class="d-flex">
-        <th class="col-9">Minhas frases</th>
-        <th class="col-3 text-right">
+        <th class="col-8"><h2>Frases</h2></th>
+        <th class="col-4 text-right">
           <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Mais antigo</a>
@@ -14,7 +14,7 @@
     </thead>
     <tbody style="max-height: 60vh;">
       <tr class="d-flex">
-        <td class="col-9"><b><a href='{% url "sentence_create" %}'class="novo"><i class="material-icons">add</i> Nova frase</a></b></td>
+        <td class="col-9"><b><a data-toggle="modal" class="newSentence" href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Nova frase</h3></a></b></td>
         <td class="col-3 text-right"></td>
       </tr>
       {% for frase in object_list %}
@@ -25,3 +25,4 @@
       {% endfor %}
     </tbody>
   </table>
+  

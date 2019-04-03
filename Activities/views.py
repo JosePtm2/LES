@@ -1,8 +1,9 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-
 from .models import Verb, Sentence, Group, Pattern
+from django.template.loader import render_to_string
+
 # Create your views here.
 
 
@@ -33,17 +34,18 @@ class DeleteVerb(DeleteView):
 
 class ListSentence(ListView):
     model = Sentence
-
+    
 
 class DetailSentence(DetailView):
     model = Sentence
 
-
+    
 class CreateSentence(CreateView):
     model = Sentence
     fields = ['sentencename', 'subject', 'verbid', 'userid']
     success_url = reverse_lazy('sentence_list')
 
+    
 
 class UpdateSentence(UpdateView):
     model = Sentence

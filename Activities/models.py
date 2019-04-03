@@ -57,6 +57,7 @@ class Group(models.Model):
     pattern = models.ManyToManyField('Pattern')
     tags = models.ManyToManyField('Tags')
 
+    sentences = models.ManyToManyField('Sentence')
     class Meta:
         managed = True
         db_table = 'Group'
@@ -84,7 +85,6 @@ class Sentence(models.Model):
                                models.DO_NOTHING,
                                db_column='VerbID')
 
-    group = models.ManyToManyField('Group')
 
     class Meta:
         managed = True

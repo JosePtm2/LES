@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Verb, Sentence, Group, Pattern
 from django.template.loader import render_to_string
+from django.utils import timezone
 
 # Create your views here.
 
@@ -42,9 +43,14 @@ class DetailSentence(DetailView):
     
 class CreateSentence(CreateView):
     model = Sentence
-    fields = ['sentencename', 'subject', 'verbid', 'userid']
-    success_url = reverse_lazy('sentence_list')
+    fields = ['sentencename', 'subject', 'receiver', 'verbid', 'artefacto']
 
+    def form_valid(self, form):
+        form.instance.datecreated = timezone.now()
+        form.instance.userid = self.request.user
+        return super(CreateSentence, self).form_valid(form)
+
+    success_url = reverse_lazy('sentence_list')
     
 
 class UpdateSentence(UpdateView):
@@ -68,7 +74,13 @@ class DetailGroup(DetailView):
 
 class CreateGroup(CreateView):
     model = Group
-    fields = ['userid', 'groupname']
+    fields = ['groupname']
+
+    def form_valid(self, form):
+        form.instance.creationdate = timezone.now()
+        form.instance.userid = self.request.user
+        return super(CreateGroup, self).form_valid(form)
+
     success_url = reverse_lazy('group_list')
 
 
@@ -93,7 +105,13 @@ class DetailPattern(DetailView):
 
 class CreatePattern(CreateView):
     model = Pattern
-    fields = ['userid', 'patternname']
+    fields = ['patternname']
+
+    def form_valid(self, form):
+        form.instance.data_creation = timezone.now()
+        form.instance.userid = self.request.user
+        return super(CreatePattern, self).form_valid(form)
+
     success_url = reverse_lazy('pattern_list')
 
 

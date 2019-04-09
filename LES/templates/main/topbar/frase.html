@@ -1,0 +1,3 @@
+{% if perms.Activities.add_sentence %}
+<a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "sentence_create" %}", "#newSentence")' href="">Frase</a>
+{% endif %}

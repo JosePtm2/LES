@@ -1,0 +1,3 @@
+{% if perms.Activities.add_pattern %}
+<a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "pattern_create" %}", "#newPattern")' href="">Padrão</a>
+{% endif %}

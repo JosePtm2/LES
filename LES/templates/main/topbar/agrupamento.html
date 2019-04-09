@@ -1,0 +1,3 @@
+{% if perms.Activities.add_group %}
+    <a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "group_create" %}", "#newGroup")' href="">Agrupamento</a>
+{% endif %}

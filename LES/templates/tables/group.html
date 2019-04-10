@@ -19,7 +19,7 @@
         </tr>
         {% for agrupamento in object_list %}
         <tr class="d-flex">
-            <td class="d-block col-8">{{ agrupamento.groupname }}</td>
+            <td class="d-block col-8"><a href="{% url 'group_detail' agrupamento.id %}">{{ agrupamento.groupname }}</a></td>
             <td class="d-block col-4 text-right">{{ agrupamento.creationdate }}</td>
         </tr>
         {% endfor %}

@@ -43,10 +43,12 @@ class DetailSentence(DetailView):
     
 class CreateSentence(CreateView):
     model = Sentence
-    fields = ['sentencename', 'subject', 'receiver', 'verbid', 'artefacto']
+    fields = ['sentencename', 'subject', 'receiver', 'recurso', 'verbid', 'artefacto', 'datarealizado']
 
     def form_valid(self, form):
         form.instance.datecreated = timezone.now()
+        if not form.instance.datarealizado:
+            form.instance.DataRealizado = timezone.now()
         form.instance.userid = self.request.user
         return super(CreateSentence, self).form_valid(form)
 

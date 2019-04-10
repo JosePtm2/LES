@@ -2,3 +2,4 @@
 
 <p>Name: {{object.groupname}}</p>
 <p>User: {{object.userid}}</p>
+<p>Sentence: {% include 'tables/sentence.html' with object_list=object.sentences.all %}</p>

@@ -19,7 +19,7 @@
         </tr>
         {% for frase in object_list %}
         <tr class="d-flex">
-            <td class="d-block col-8">{{ frase.sentencename }}</td>
+            <td class="d-block col-8"> <a href="{% url 'sentence_detail' frase.id %}">{{ frase.sentencename }}</a></td>
             <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
         </tr>
         {% endfor %}

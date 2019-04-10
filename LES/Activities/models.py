@@ -58,6 +58,7 @@ class Group(models.Model):
     tags = models.ManyToManyField('Tags')
 
     sentences = models.ManyToManyField('Sentence')
+
     class Meta:
         managed = True
         db_table = 'Group'
@@ -81,9 +82,11 @@ class Sentence(models.Model):
                                 blank=True,
                                 null=True,
                                 verbose_name="Recetor")
-    datarealizado = models.DateField(db_column='DataRealizado', null=True)
+    datarealizado = models.DateField(db_column='DataRealizado', blank=True)
+    recurso = models.CharField(db_column='Recurso',
+                               max_length=255, null=True, blank=True)
     artefacto = models.CharField(db_column='Artefacto',
-                                 max_length=255, null=True)
+                                 max_length=255, null=True, blank=True)
     verbid = models.ForeignKey('Verb',
                                models.DO_NOTHING,
                                db_column='VerbID',
@@ -98,13 +101,18 @@ class Sentence(models.Model):
 
 
 class Verb(models.Model):
+    verb_type_choices = (('Produtivo','Produtivo'),
+                         ('Comunicativo','Comunicativo'))
     id = models.AutoField(db_column='ID',
                           primary_key=True)
     verbname = models.CharField(db_column='VerbName',
                                 unique=True,
-                                max_length=255)
+                                max_length=255,
+                                verbose_name='Verbo')
     verbtype = models.CharField(db_column='VerbType',
-                                max_length=255)
+                                max_length=255,
+                                choices=verb_type_choices,
+                                verbose_name='Tipo')
 
     class Meta:
         managed = True

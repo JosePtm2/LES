@@ -1,0 +1,30 @@
+<table class="table table-hover header-fixed my-5">
+    <thead>
+        <tr class="d-flex">
+            <th class="col-8"><h2>Frases</h2></th>
+            <th class="col-4 text-right">
+                <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Mais antigo</a>
+                    <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+                    <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody style="max-height: 60vh;">
+        <tr class="d-flex">
+            <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "sentence_create" %}", "#newSentence")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Nova frase</h3></a></td>
+            <td class="col-3 text-right"></td>
+        </tr>
+        {% for frase in object_list %}
+        <tr class="d-flex">
+            <td class="d-block col-7"> <a href="{% url 'sentence_detail' frase.id %}">{{ frase.sentencename }}</a></td>
+            <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
+            <td class="d-block col-1 text-right"><a href="{% url 'sentence_delete' frase.id %}"><i class="material-icons text-danger">clear</i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+  

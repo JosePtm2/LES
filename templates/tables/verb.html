@@ -21,7 +21,7 @@
         <tr class="d-flex">
             <td class="d-block col-7"><a href="{% url 'verb_detail' verbo.id %}">{{ verbo.verbname }}</a></td>
             <td class="d-block col-4 text-right">{{ verbo.verbtype }}</td>
-            <td class="d-block col-1 text-right"><a href="{% url 'verb_delete' verbo.id %}"><i class="material-icons text-danger">clear</i></a></td>
+            <td class="d-block col-1 text-right"><a href="{% url 'verb_update' verbo.id %}"><i class="material-icons ">create</i></a><a href="{% url 'verb_delete' verbo.id %}"><i class="material-icons text-danger">clear</i></a></td>
         </tr>
         {% endfor %}
     </tbody>

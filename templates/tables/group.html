@@ -21,7 +21,7 @@
         <tr class="d-flex">
             <td class="d-block col-7"><a href="{% url 'group_detail' agrupamento.id %}">{{ agrupamento.groupname }}</a></td>
             <td class="d-block col-4 text-right">{{ agrupamento.creationdate }}</td>
-            <td class="d-block col-1 text-right"><a href="{% url 'group_delete' agrupamento.id %}"><i class="material-icons text-danger">clear</i></a></td>
+            <td class="d-block col-1 text-right"><a href="{% url 'group_update' agrupamento.id %}"><i class="material-icons ">create</i></a><a href="{% url 'group_delete' agrupamento.id %}"><i class="material-icons text-danger">clear</i></a></td>
         </tr>
         {% endfor %}
     </tbody>

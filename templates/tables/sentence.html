@@ -21,10 +21,8 @@
         <tr class="d-flex">
             <td class="d-block col-7"> <a href="{% url 'sentence_detail' frase.id %}">{{ frase.sentencename }}</a></td>
             <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
-            <td class="d-block col-1 text-right"><a href="{% url 'sentence_delete' frase.id %}"><i class="material-icons text-danger">clear</i></a></td>
+            <td class="d-block col-1 text-right"><a href="{% url 'sentence_update' frase.id %}"><i class="material-icons ">create</i></a><a href="{% url 'sentence_delete' frase.id %}"><i class="material-icons text-danger">clear</i></a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
-  

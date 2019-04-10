@@ -88,7 +88,7 @@ class Sentence(models.Model):
     artefacto = models.CharField(db_column='Artefacto',
                                  max_length=255, null=True, blank=True)
     verbid = models.ForeignKey('Verb',
-                               models.DO_NOTHING,
+                               models.CASCADE,
                                db_column='VerbID',
                                verbose_name="Verbo")
 
@@ -100,8 +100,7 @@ class Sentence(models.Model):
         return self.sentencename
 
 
-class Verb(models.Model):
-    verb_type_choices = (('Produtivo','Produtivo'),
+class Verb(models.Model):    verb_type_choices = (('Produtivo','Produtivo'),
                          ('Comunicativo','Comunicativo'))
     id = models.AutoField(db_column='ID',
                           primary_key=True)

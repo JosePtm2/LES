@@ -21,7 +21,7 @@
         <tr class="d-flex">
             <td class="d-block col-7"><a href="{% url 'pattern_detail' padrao.id %}">{{ padrao.patternname }}</a></td>
             <td class="d-block col-4 text-right">{{ padrao.data_creation }}</td>
-            <td class="d-block col-1 text-right"><a href="{% url 'pattern_delete' padrao.id %}"><i class="material-icons text-danger">clear</i></a></td>
+            <td class="d-block col-1 text-right"><a href="{% url 'pattern_update' padrao.id %}"><i class="material-icons ">create</i></a><a href="{% url 'pattern_delete' padrao.id %}"><i class="material-icons text-danger">clear</i></a></td>
         </tr>
         {% endfor %}
     </tbody>

@@ -74,7 +74,7 @@ class DetailGroup(DetailView):
 
 class CreateGroup(CreateView):
     model = Group
-    fields = ['groupname']
+    fields = ['groupname', 'sentences']
 
     def form_valid(self, form):
         form.instance.creationdate = timezone.now()

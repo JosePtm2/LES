@@ -25,25 +25,5 @@
         {% endfor %}
     </tbody>
 </table>
-<div class="modal fade" data-backdrop="static" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Novo Agrupamento</h2>
-                <a class="close text-danger" data-dismiss="modal" aria-label="Close">
-                    <span>&times;</span>
-                </a>
-            </div>
-            <form action="{% url 'group_create' %}" method="post">
-                <div class="modal-body">
-                {% include "Activities/group_form.html" %}
-                </div>
-                <div class="modal-footer">
-                    <a class="text-danger mr-3" href="" data-dismiss="modal">Cancelar</a>
-                    <button type="submit" value="submit" class="btn text-white">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 

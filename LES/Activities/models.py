@@ -70,25 +70,31 @@ class Sentence(models.Model):
                                models.DO_NOTHING,
                                db_column='UserID')
     sentencename = models.CharField(db_column='SentenceName',
-                                    max_length=255)
+                                    max_length=255,
+                                    verbose_name="Frase")
     datecreated = models.DateField(db_column='DateCreated', null=True)
     subject = models.CharField(db_column='Subject',
-                               max_length=255)
+                               max_length=255,
+                               verbose_name="Sujeito")
     receiver = models.CharField(db_column='Receiver',
                                 max_length=255,
                                 blank=True,
-                                null=True)
+                                null=True,
+                                verbose_name="Recetor")
     datarealizado = models.DateField(db_column='DataRealizado', null=True)
     artefacto = models.CharField(db_column='Artefacto',
                                  max_length=255, null=True)
     verbid = models.ForeignKey('Verb',
                                models.DO_NOTHING,
-                               db_column='VerbID')
+                               db_column='VerbID',
+                               verbose_name="Verbo")
 
 
     class Meta:
         managed = True
         db_table = 'Sentence'
+    def __str__(self):
+        return self.sentencename
 
 
 class Verb(models.Model):
@@ -103,3 +109,5 @@ class Verb(models.Model):
     class Meta:
         managed = True
         db_table = 'Verb'
+    def __str__(self):
+        return self.verbname

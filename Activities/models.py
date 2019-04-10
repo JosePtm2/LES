@@ -100,7 +100,8 @@ class Sentence(models.Model):
         return self.sentencename
 
 
-class Verb(models.Model):    verb_type_choices = (('Produtivo','Produtivo'),
+class Verb(models.Model):
+    verb_type_choices = (('Produtivo','Produtivo'),
                          ('Comunicativo','Comunicativo'))
     id = models.AutoField(db_column='ID',
                           primary_key=True)

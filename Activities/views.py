@@ -43,7 +43,7 @@ class DetailSentence(DetailView):
     
 class CreateSentence(CreateView):
     model = Sentence
-    fields = ['sentencename', 'subject', 'receiver', 'recurso', 'verbid', 'artefacto', 'datarealizado']
+    fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'recurso', 'artefacto', 'datarealizado']
 
     def form_valid(self, form):
         form.instance.datecreated = timezone.now()

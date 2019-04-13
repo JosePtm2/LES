@@ -49,6 +49,12 @@
                                     {% if perms.Activities.view_verb %}
 									<a class="dropdown-item" href="#">Verbo</a>
                                     {% endif %}
+                                    {% if perms.Activities.view_resource %}
+									<a class="dropdown-item" href="#">Recurso</a>
+                                    {% endif %}
+                                    {% if perms.Activities.view_artefact %}
+									<a class="dropdown-item" href="#">Artefacto</a>
+                                    {% endif %}
                                     {% if perms.Activities.view_group %}
 									<a class="dropdown-item" href="#">Agrupamentos</a>
                                     {% endif %}
@@ -60,6 +66,12 @@
                                     {% endif %}
                                     {% if perms.Processes.view_process %}
 									<a class="dropdown-item" href="#">Processos</a>
+                                    {% endif %}
+                                    {% if perms.Processes.view_role %}
+									<a class="dropdown-item" href="#">Papéis</a>
+                                    {% endif %}
+                                    {% if perms.Processes.view_product %}
+									<a class="dropdown-item" href="#">Produtos</a>
                                     {% endif %}
 								</div>
 							</div>
@@ -75,10 +87,14 @@
 								{% include "main/topbar/utilizador.html" %}
 								{% include "main/topbar/frase.html" %}
 								{% include "main/topbar/verbo.html" %}
+                                {% include "main/topbar/recurso.html" %}
+                                {% include "main/topbar/artefacto.html" %}
 								{% include "main/topbar/agrupamento.html" %}
 								{% include "main/topbar/padrao.html" %}
 								{% include "main/topbar/processo.html" %}
 								{% include "main/topbar/atividade.html" %}
+                                {% include "main/topbar/papel.html" %}
+                                {% include "main/topbar/produto.html" %}
 							</div>
 						</div>
 					</li>
@@ -101,5 +117,6 @@
 			{% endblock %}
 	</div>
     {% include "main/newModal.html" %}
+    {% include "main/detailModal.html" %}
 </body>
 {% endblock %}

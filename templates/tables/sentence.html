@@ -14,14 +14,17 @@
     </thead>
     <tbody style="max-height: 60vh;">
         <tr class="d-flex">
-            <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "sentence_create" %}", "#newSentence")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Nova frase</h3></a></td>
+            <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "sentence_create" %}", "Nova Frase", "#modal","modal-lg")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Nova frase</h3></a></td>
             <td class="col-3 text-right"></td>
         </tr>
         {% for frase in object_list %}
         <tr class="d-flex">
-            <td class="d-block col-7"> <a href="{% url 'sentence_detail' frase.id %}">{{ frase.sentencename }}</a></td>
+            <td class="d-block col-7"> <a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg")' href="">{{ frase.sentencename }}</a></td>
             <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
-            <td class="d-block col-1 text-right"><a href="{% url 'sentence_delete' frase.id %}"><i class="material-icons text-danger">clear</i></a></td>
+            <td class="d-block col-1 text-right">
+                <a data-toggle="modal" onclick='newModal("{% url "sentence_update" frase.id %}", "Editar Frase", "#modal", "modal-lg")' href=''><i class="material-icons">create</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "sentence_delete" frase.id %}", "Eliminar Frase", "#modal", "")' href=''><i class="material-icons text-danger">clear</i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

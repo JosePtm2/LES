@@ -14,14 +14,17 @@
     </thead>
     <tbody style="max-height: 60vh;">
         <tr class="d-flex">
-           <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "group_create" %}", "#newGroup")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Novo Agrupamento</h3></a></td>
+           <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "group_create" %}", "Novo Agrupamento", "#modal", "")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Novo Agrupamento</h3></a></td>
            <td class="col-3 text-right"></td>
         </tr>
         {% for agrupamento in object_list %}
         <tr class="d-flex">
-            <td class="d-block col-7"><a href="{% url 'group_detail' agrupamento.id %}">{{ agrupamento.groupname }}</a></td>
+            <td class="d-block col-7"><a data-toggle="modal" onclick='newModal("{% url "group_detail" agrupamento.id %}", "Detalhes do Agrupamento", "#detailModal", "modal-lg")' href="">{{ agrupamento.groupname }}</a></td>
             <td class="d-block col-4 text-right">{{ agrupamento.creationdate }}</td>
-            <td class="d-block col-1 text-right"><a href="{% url 'group_delete' agrupamento.id %}"><i class="material-icons text-danger">clear</i></a></td>
+            <td class="d-block col-1 text-right">
+                <a data-toggle="modal" onclick='newModal("{% url "group_update" agrupamento.id %}", "Editar Agrupamento", "#modal", "")' href=''><i class="material-icons">create</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "group_delete" agrupamento.id %}", "Eliminar Agrupamento", "#modal", "")' href=''><i class="material-icons text-danger">clear</i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

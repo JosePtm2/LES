@@ -29,6 +29,7 @@ class Pattern(models.Model):
     description = models.CharField(db_column='Description',
                                    max_length=255)
     data_creation = models.DateField(db_column='Data Creation', null=True)
+    groups = models.ManyToManyField('Group')
 
     class Meta:
         managed = True
@@ -54,7 +55,6 @@ class Group(models.Model):
     description = models.CharField(db_column='Description',
                                    max_length=255)
 
-    pattern = models.ManyToManyField('Pattern')
     tags = models.ManyToManyField('Tags')
 
     sentences = models.ManyToManyField('Sentence')
@@ -62,6 +62,8 @@ class Group(models.Model):
     class Meta:
         managed = True
         db_table = 'Group'
+    def __str__(self):
+        return self.groupname
 
 
 class Sentence(models.Model):
@@ -82,7 +84,7 @@ class Sentence(models.Model):
                                 blank=True,
                                 null=True,
                                 verbose_name="Recetor")
-    datarealizado = models.DateField(db_column='DataRealizado', blank=True)
+    datarealizado = models.DateField(db_column='DataRealizado',blank=True)
     recurso = models.CharField(db_column='Recurso',
                                max_length=255, null=True, blank=True)
     artefacto = models.CharField(db_column='Artefacto',
@@ -119,3 +121,37 @@ class Verb(models.Model):
         db_table = 'Verb'
     def __str__(self):
         return self.verbname
+        
+        
+        
+class Resource(models.Model):
+    id = models.AutoField(db_column='ID',
+                          primary_key=True)
+    resourcename = models.CharField(db_column='ResourceName',
+                                unique=True,
+                                max_length=255,
+                                verbose_name='Recurso')
+    datecreated = models.DateField(db_column='DateCreated')
+
+    class Meta:
+        managed = True
+        db_table = 'Resource'
+    def __str__(self):
+        return self.resourcename
+ 
+ 
+class Artefact(models.Model):
+    id = models.AutoField(db_column='ID',
+                          primary_key=True)
+    artefactname = models.CharField(db_column='ArtefactName',
+                                unique=True,
+                                max_length=255,
+                                verbose_name='Artefacto')
+    datecreated = models.DateField(db_column='DateCreated')
+
+    class Meta:
+        managed = True
+        db_table = 'Artefacto'
+    def __str__(self):
+        return self.artefactname
+       

@@ -1,6 +1,6 @@
-<h1>Verb Delete?</h1>
-<form  method="post">
+<div class="container">
 {% csrf_token %}
-Are you sure you want to delete this verb?
-<input  type="submit"  value="Submit"  />
-</form>
+    Tem a certeza que deseja eliminar o Verbo?<br><br>
+    <p>{{ object.verbname }}</p>
+</div>
+

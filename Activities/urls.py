@@ -17,6 +17,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    #==========   VERB   ==========#
     path('verbs/', views.ListVerb.as_view(), name='verb_list'),
     path('verb/<int:pk>', views.DetailVerb.as_view(), name='verb_detail'),
     path('create_verb/', views.CreateVerb.as_view(), name='verb_create'),
@@ -26,7 +27,11 @@ urlpatterns = [
     path('delete_verb<int:pk>/',
          views.DeleteVerb.as_view(),
          name='verb_delete'),
-
+    #==========   VERB   ==========#
+    
+    
+    
+    #==========   SENTENCE   ==========#
     path('sentences/', views.ListSentence.as_view(), name='sentence_list'),
     path('sentence/<int:pk>', views.DetailSentence.as_view(),
          name='sentence_detail'),
@@ -38,7 +43,11 @@ urlpatterns = [
     path('delete_sentence<int:pk>/',
          views.DeleteSentence.as_view(),
          name='sentence_delete'),
-
+    #==========   SENTENCE   ==========#
+    
+    
+    
+    #==========   GROUP   ==========#
     path('groups/', views.ListGroup.as_view(), name='group_list'),
     path('group/<int:pk>', views.DetailGroup.as_view(),
          name='group_detail'),
@@ -50,7 +59,11 @@ urlpatterns = [
     path('delete_group<int:pk>/',
          views.DeleteGroup.as_view(),
          name='group_delete'),
+    #==========   GROUP   ==========#
 
+    
+    
+    #==========   PATTERN   ==========#
     path('patterns/', views.ListPattern.as_view(), name='pattern_list'),
     path('pattern/<int:pk>', views.DetailPattern.as_view(),
          name='pattern_detail'),
@@ -62,5 +75,37 @@ urlpatterns = [
     path('delete_pattern<int:pk>/',
          views.DeletePattern.as_view(),
          name='pattern_delete'),
-
+    #==========   PATTERN   ==========#
+    
+    
+    
+    #==========   RESOURCE   ==========#
+    path('resources/', views.ListResource.as_view(), name='resource_list'),
+    path('resource/<int:pk>', views.DetailResource.as_view(),
+         name='resource_detail'),
+    path('create_resource/', views.CreateResource.as_view(),
+         name='resource_create'),
+    path('update_resource/<int:pk>',
+         views.UpdateResource.as_view(),
+         name='resource_update'),
+    path('delete_resource/<int:pk>',
+         views.DeleteResource.as_view(),
+         name='resource_delete'),
+    #==========   RESOURCE   ==========#
+    
+    
+    
+    #==========   ARTEFACT   ==========#
+    path('artefacts/', views.ListArtefact.as_view(), name='artefact_list'),
+    path('artefact/<int:pk>', views.DetailArtefact.as_view(),
+         name='artefact_detail'),
+    path('create_artefact/', views.CreateArtefact.as_view(),
+         name='artefact_create'),
+    path('update_artefact/<int:pk>',
+         views.UpdateArtefact.as_view(),
+         name='artefact_update'),
+    path('delete_artefact/<int:pk>',
+         views.DeleteArtefact.as_view(),
+         name='artefact_delete'),
+    #==========   ARTEFACT   ==========#
 ]

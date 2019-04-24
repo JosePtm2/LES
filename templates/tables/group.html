@@ -23,7 +23,7 @@
             <td class="d-block col-4 text-right">{{ agrupamento.creationdate }}</td>
             <td class="d-block col-1 text-right">
                 <a data-toggle="modal" onclick='newModal("{% url "group_update" agrupamento.id %}", "Editar Agrupamento", "#modal", "")' href=''><i class="material-icons">create</i></a>
-                <a data-toggle="modal" onclick='newModal("{% url "group_delete" agrupamento.id %}", "Eliminar Agrupamento", "#modal", "")' href=''><i class="material-icons text-danger">clear</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "group_delete" agrupamento.id %}", "Eliminar Agrupamento", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
             </td>
         </tr>
         {% endfor %}

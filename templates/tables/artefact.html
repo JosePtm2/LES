@@ -23,7 +23,7 @@
             <td class="d-block col-4 text-right">{{ artefacto.datecreated }}</td>
             <td class="d-block col-1 text-right">
                 <a data-toggle="modal" onclick='newModal("{% url "artefact_update" artefacto.id %}", "Editar Artefacto", "#modal", "")' href=''><i class="material-icons">create</i></a>
-                <a data-toggle="modal" onclick='newModal("{% url "artefact_delete" artefacto.id %}", "Eliminar Artefacto", "#modal", "")' href=''><i class="material-icons text-danger">clear</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "artefact_delete" artefacto.id %}", "Eliminar Artefacto", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
             </td>
         </tr>
         {% endfor %}

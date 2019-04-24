@@ -23,7 +23,7 @@
             <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
             <td class="d-block col-1 text-right">
                 <a data-toggle="modal" onclick='newModal("{% url "sentence_update" frase.id %}", "Editar Frase", "#modal", "modal-lg")' href=''><i class="material-icons">create</i></a>
-                <a data-toggle="modal" onclick='newModal("{% url "sentence_delete" frase.id %}", "Eliminar Frase", "#modal", "")' href=''><i class="material-icons text-danger">clear</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "sentence_delete" frase.id %}", "Eliminar Frase", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
             </td>
         </tr>
         {% endfor %}

@@ -23,7 +23,7 @@
             <td class="d-block col-4 text-right">{{ recurso.datecreated }}</td>
             <td class="d-block col-1 text-right">
                 <a data-toggle="modal" onclick='newModal("{% url "resource_update" recurso.id %}", "Editar Recurso", "#modal", "")' href=""><i class="material-icons">create</i></a>
-                <a data-toggle="modal" onclick='newModal("{% url "resource_delete" recurso.id %}", "Eliminar Recurso", "#modal", "")' href=''><i class="material-icons text-danger">clear</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "resource_delete" recurso.id %}", "Eliminar Recurso", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
             </td>
         </tr>
         {% endfor %}

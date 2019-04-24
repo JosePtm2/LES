@@ -84,7 +84,7 @@ class Sentence(models.Model):
                                 blank=True,
                                 null=True,
                                 verbose_name="Recetor")
-    datarealizado = models.DateField(db_column='DataRealizado',blank=True)
+    datarealizado = models.DateField(db_column='DataRealizado',blank=True, null=True)
     recurso = models.CharField(db_column='Recurso',
                                max_length=255, null=True, blank=True)
     artefacto = models.CharField(db_column='Artefacto',

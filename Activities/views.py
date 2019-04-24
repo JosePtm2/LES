@@ -2,10 +2,38 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Verb, Sentence, Group, Pattern, Resource, Artefact
-from django.template.loader import render_to_string
 from django.utils import timezone
+from django.http import JsonResponse, HttpResponse
 
 # Create your views here.
+
+
+class AjaxableResponseMixin(object):
+    """
+    Mixin to add AJAX support to a form.
+    Must be used with an object-based FormView (e.g. CreateView)
+    """
+    
+    def form_invalid(self, form):
+        response = super(AjaxableResponseMixin, self).form_invalid(form)
+        if self.request.is_ajax():
+            return JsonResponse(form.errors, status=400)
+        else:
+            return response
+        
+
+    def form_valid(self, form):
+        # We make sure to call the parent's form_valid() method because
+        # it might do some processing (in the case of CreateView, it will
+        # call form.save() for example).
+        response = super(AjaxableResponseMixin, self).form_valid(form)
+        if self.request.is_ajax():  
+            data = {
+                'pk': self.object.pk,
+            }
+            return JsonResponse(data)
+        else:
+            return response
 
 #==========   VERB   ==========#
 class ListVerb(ListView):
@@ -14,12 +42,12 @@ class ListVerb(ListView):
 class DetailVerb(DetailView):
     model = Verb
 
-class CreateVerb(CreateView):
+class CreateVerb(AjaxableResponseMixin, CreateView):
     model = Verb
     fields = ['verbname', 'verbtype']
     success_url = reverse_lazy('verb_list')
 
-class UpdateVerb(UpdateView):
+class UpdateVerb(AjaxableResponseMixin, UpdateView):
     model = Verb
     fields = ['verbname', 'verbtype']
     success_url = reverse_lazy('verb_list')
@@ -40,7 +68,7 @@ class ListSentence(ListView):
 class DetailSentence(DetailView):
     model = Sentence
     
-class CreateSentence(CreateView):
+class CreateSentence(AjaxableResponseMixin, CreateView):
     model = Sentence
     fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'recurso', 'artefacto', 'datarealizado']
     def form_valid(self, form):
@@ -49,10 +77,9 @@ class CreateSentence(CreateView):
             form.instance.DataRealizado = timezone.now()
         form.instance.userid = self.request.user
         return super(CreateSentence, self).form_valid(form)
-
     success_url = reverse_lazy('sentence_list')    
 
-class UpdateSentence(UpdateView):
+class UpdateSentence(AjaxableResponseMixin, UpdateView):
     model = Sentence
     fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'recurso', 'artefacto', 'datarealizado']
     success_url = reverse_lazy('sentence_list')
@@ -73,7 +100,7 @@ class ListGroup(ListView):
 class DetailGroup(DetailView):
     model = Group
 
-class CreateGroup(CreateView):
+class CreateGroup(AjaxableResponseMixin, CreateView):
     model = Group
     fields = ['groupname', 'sentences']
     def form_valid(self, form):
@@ -82,7 +109,7 @@ class CreateGroup(CreateView):
         return super(CreateGroup, self).form_valid(form)
     success_url = reverse_lazy('group_list')
 
-class UpdateGroup(UpdateView):
+class UpdateGroup(AjaxableResponseMixin, UpdateView):
     model = Group
     fields = ['groupname', 'sentences']
     success_url = reverse_lazy('group_list')
@@ -103,7 +130,7 @@ class ListPattern(ListView):
 class DetailPattern(DetailView):
     model = Pattern
 
-class CreatePattern(CreateView):
+class CreatePattern(AjaxableResponseMixin, CreateView):
     model = Pattern
     fields = ['patternname', 'groups']
     def form_valid(self, form):
@@ -112,7 +139,7 @@ class CreatePattern(CreateView):
         return super(CreatePattern, self).form_valid(form)
     success_url = reverse_lazy('pattern_list')
 
-class UpdatePattern(UpdateView):
+class UpdatePattern(AjaxableResponseMixin, UpdateView):
     model = Pattern
     fields = ['patternname', 'groups']
     success_url = reverse_lazy('pattern_list')
@@ -133,7 +160,7 @@ class ListResource(ListView):
 class DetailResource(DetailView):
     model = Resource
 
-class CreateResource(CreateView):
+class CreateResource(AjaxableResponseMixin, CreateView):
     model = Resource
     fields = ['resourcename']
     success_url = reverse_lazy('resource_list')    
@@ -141,7 +168,7 @@ class CreateResource(CreateView):
         form.instance.datecreated = timezone.now()
         return super(CreateResource, self).form_valid(form)
 
-class UpdateResource(UpdateView):
+class UpdateResource(AjaxableResponseMixin, UpdateView):
     model = Resource
     fields = ['resourcename']
     success_url = reverse_lazy('resource_list')
@@ -162,7 +189,7 @@ class ListArtefact(ListView):
 class DetailArtefact(DetailView):
     model = Artefact
 
-class CreateArtefact(CreateView):
+class CreateArtefact(AjaxableResponseMixin, CreateView):
     model = Artefact
     fields = ['artefactname']
     success_url = reverse_lazy('artefact_list')    
@@ -170,7 +197,7 @@ class CreateArtefact(CreateView):
         form.instance.datecreated = timezone.now()
         return super(CreateArtefact, self).form_valid(form)
 
-class UpdateArtefact(UpdateView):
+class UpdateArtefact(AjaxableResponseMixin, UpdateView):
     model = Artefact
     fields = ['artefactname']
     success_url = reverse_lazy('artefact_list')

@@ -1,6 +1,6 @@
 {% if perms.Activities.view_sentence %}
     <li {% if request.path == "/sentences/" %} class="active" {% endif %}>
-        <a href='{% url "sentence_list" %}'><i class="material-icons">play_arrow</i> Frases</a>
+        <a href="{% url 'sentence_list' %}"><i class="material-icons">play_arrow</i> Frases</a>
     </li>
     <ul class="list-unstyled">
         {% if perms.Activities.view_verb %}

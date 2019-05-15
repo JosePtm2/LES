@@ -102,7 +102,7 @@ class DetailGroup(DetailView):
 
 class CreateGroup(AjaxableResponseMixin, CreateView):
     model = Group
-    fields = ['groupname', 'sentences']
+    fields = ['groupname',]
     def form_valid(self, form):
         form.instance.creationdate = timezone.now()
         form.instance.userid = self.request.user

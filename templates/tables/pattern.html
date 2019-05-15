@@ -14,7 +14,7 @@
     </thead>
     <tbody style="max-height: 60vh;">
         <tr class="d-flex">
-            <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "pattern_create" %}", "Novo Padrão", "#modal", "")' href=""><h3 style="color:#058096;"><i class="material-icons">add</i>Novo Padrão</h3></a></td>
+            <td class="col-9"><a href="{% url 'group_list' %}"><h3 style="color:#058096;"><i class="material-icons">add</i>Novo Padrão</h3></a></td>
             <td class="col-3 text-right"></td>
         </tr>
         {% for padrao in object_list %}

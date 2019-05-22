@@ -33,11 +33,11 @@
     </div>
     <div class="row">
         {% for p in form %}
-            {% if p.name == "recurso" %}
+            {% if p.name == "resourceid" %}
                 <div class="col-6">
                     {{ p|as_crispy_field }}
                 </div>
-            {% elif p.name == "artefacto" %}
+            {% elif p.name == "artefactid" %}
                 <div class="col-6">
                     {{ p|as_crispy_field }}
                 </div>

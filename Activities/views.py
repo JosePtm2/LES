@@ -70,7 +70,7 @@ class DetailSentence(DetailView):
     
 class CreateSentence(AjaxableResponseMixin, CreateView):
     model = Sentence
-    fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'recurso', 'artefacto', 'datarealizado']
+    fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'resourceid', 'artefactid', 'datarealizado']
     def form_valid(self, form):
         form.instance.datecreated = timezone.now()
         if not form.instance.datarealizado:
@@ -81,7 +81,7 @@ class CreateSentence(AjaxableResponseMixin, CreateView):
 
 class UpdateSentence(AjaxableResponseMixin, UpdateView):
     model = Sentence
-    fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'recurso', 'artefacto', 'datarealizado']
+    fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'resourceid', 'artefactid', 'datarealizado']
     success_url = reverse_lazy('sentence_list')
 
 class DeleteSentence(DeleteView):
@@ -102,7 +102,7 @@ class DetailGroup(DetailView):
 
 class CreateGroup(AjaxableResponseMixin, CreateView):
     model = Group
-    fields = ['groupname',]
+    fields = ['groupname','sentences']
     def form_valid(self, form):
         form.instance.creationdate = timezone.now()
         form.instance.userid = self.request.user

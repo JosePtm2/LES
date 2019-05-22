@@ -85,14 +85,20 @@ class Sentence(models.Model):
                                 null=True,
                                 verbose_name="Recetor")
     datarealizado = models.DateField(db_column='DataRealizado',blank=True, null=True)
-    recurso = models.CharField(db_column='Recurso',
-                               max_length=255, null=True, blank=True)
-    artefacto = models.CharField(db_column='Artefacto',
-                                 max_length=255, null=True, blank=True)
     verbid = models.ForeignKey('Verb',
                                models.DO_NOTHING,
                                db_column='VerbID',
                                verbose_name="Verbo")
+    resourceid = models.ForeignKey('Resource',
+                               models.DO_NOTHING,
+                               db_column='ResourceID',
+                               verbose_name="Recurso",
+                               null=True, blank=True)
+    artefactid = models.ForeignKey('Artefact',
+                               models.DO_NOTHING,
+                               db_column='ArtefactID',
+                               verbose_name="Artefacto",
+                               null=True, blank=True) 
 
 
     class Meta:

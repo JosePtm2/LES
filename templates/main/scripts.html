@@ -38,6 +38,9 @@
         $(id).attr('action', url);
         $(".modal-dialog").addClass(size);
         var btn = $(this);
+        var items = $("table input:checkbox:checked").map(function () {
+            return $(this).attr('id');
+        }).get();
         $.ajax({
             type: 'get',
             dataType:'json',

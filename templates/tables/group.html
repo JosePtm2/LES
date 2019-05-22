@@ -20,7 +20,7 @@
         {% endif %}
         {% for agrupamento in object_list %}
         <tr class="d-flex markerDiv">
-            {% if perms.Activities.add_pattern and request.path == '/groups/' %}<td class="d-block col-1"><input onclick="this.checked=!this.checked;" type="checkbox" name="markerType" id="checkGroup{{ agrupamento.id }}" class="mt-1"/></td>{% endif %}
+            {% if perms.Activities.add_pattern and request.path == '/groups/' %}<td class="d-block col-1"><input onclick="this.checked=!this.checked;" type="checkbox" name="markerType" id="{{ agrupamento.id }}" class="mt-1"/></td>{% endif %}
             <td class="d-block {% if perms.Activities.add_pattern and request.path == '/groups/' %}col-6{% else %}col-7{% endif %}"><a id="noCheck" data-toggle="modal" onclick='newModal("{% url "group_detail" agrupamento.id %}", "Detalhes do Agrupamento", "#detailModal", "modal-lg")' href="">{{ agrupamento.groupname }}</a></td>
             <td class="d-block col-4 text-right">{{ agrupamento.creationdate }}</td>
             <td class="d-block col-1 text-right">

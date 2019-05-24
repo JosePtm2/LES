@@ -61,6 +61,7 @@
                 data: $(this).serialize(),
                 dataType: 'json',
                 success: function() {
+                    alert({{ request }});
                     window.location = '{{ request.path }}';
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

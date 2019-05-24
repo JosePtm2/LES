@@ -9,12 +9,7 @@
                 </div>
             {% elif p.name == "datarealizado" %}
                 <div class="col-3">
-                    <!--{{ p|as_crispy_field }}-->
-                    <script>
-                      $(function () {
-                        $("#datetimepicker1").datetimepicker();
-                      });
-                    </script>
+                    {{ p|as_crispy_field }}
                 </div>
             {% endif %}
         {% endfor %}

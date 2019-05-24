@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .models import Verb, Sentence, Group, Pattern, Resource, Artefact
 from django.utils import timezone
 from django.http import JsonResponse, HttpResponse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -21,12 +22,12 @@ class AjaxableResponseMixin(object):
         else:
             return response
         
-
     def form_valid(self, form):
-        # We make sure to call the parent's form_valid() method because
-        # it might do some processing (in the case of CreateView, it will
-        # call form.save() for example).
         response = super(AjaxableResponseMixin, self).form_valid(form)
+        if(self.request.path[1:7] == 'create'):
+            messages.success(self.request,f"a")
+        elif(self.request.path[1:7] == 'update'):
+            messages.info(self.request,f"a")
         if self.request.is_ajax():  
             data = {
                 'pk': self.object.pk,
@@ -55,6 +56,9 @@ class UpdateVerb(AjaxableResponseMixin, UpdateView):
 class DeleteVerb(DeleteView):
     model = Verb
     success_url = reverse_lazy('verb_list')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request,f"a")
+        return super(DeleteVerb, self).delete(request, *args, **kwargs)
 #==========   VERB   ==========#
 
 
@@ -78,6 +82,7 @@ class CreateSentence(AjaxableResponseMixin, CreateView):
         form.instance.userid = self.request.user
         return super(CreateSentence, self).form_valid(form)
     success_url = reverse_lazy('sentence_list')    
+    
 
 class UpdateSentence(AjaxableResponseMixin, UpdateView):
     model = Sentence
@@ -87,6 +92,9 @@ class UpdateSentence(AjaxableResponseMixin, UpdateView):
 class DeleteSentence(DeleteView):
     model = Sentence
     success_url = reverse_lazy('sentence_list')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request,f"a")
+        return super(DeleteSentence, self).delete(request, *args, **kwargs)
 #==========   SENTENCE   ==========#    
     
 
@@ -117,6 +125,9 @@ class UpdateGroup(AjaxableResponseMixin, UpdateView):
 class DeleteGroup(DeleteView):
     model = Group
     success_url = reverse_lazy('group_list')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request,f"a")
+        return super(DeleteGroup, self).delete(request, *args, **kwargs)
 #==========   GROUP   ==========#
 
 
@@ -147,6 +158,9 @@ class UpdatePattern(AjaxableResponseMixin, UpdateView):
 class DeletePattern(DeleteView):
     model = Pattern
     success_url = reverse_lazy('pattern_list')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request,f"a")
+        return super(DeletePattern, self).delete(request, *args, **kwargs)
 #==========   PATTERN   ==========#    
     
 
@@ -176,6 +190,9 @@ class UpdateResource(AjaxableResponseMixin, UpdateView):
 class DeleteResource(DeleteView):
     model = Resource
     success_url = reverse_lazy('resource_list')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request,f"a")
+        return super(DeleteResource, self).delete(request, *args, **kwargs)
 #==========   RESOURCE   ==========#    
     
 
@@ -205,4 +222,7 @@ class UpdateArtefact(AjaxableResponseMixin, UpdateView):
 class DeleteArtefact(DeleteView):
     model = Artefact
     success_url = reverse_lazy('artefact_list')
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request,f"a")
+        return super(DeleteArtefact, self).delete(request, *args, **kwargs)
 #==========   ARTEFACT   ==========#

@@ -18,4 +18,7 @@ from . import views
 
 urlpatterns = [
     path('', views.Home, name='home'),
+    path('search/', views.SearchView.as_view(), name='search'),
+    path('search_results/', views.SearchResultsView.as_view(),
+         name='search_results'),
 ]

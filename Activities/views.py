@@ -5,16 +5,18 @@ from .models import Verb, Sentence, Group, Pattern, Resource, Artefact
 from django.utils import timezone
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
+from django.core import serializers
+import json
 
 # Create your views here.
 
 
 class AjaxableResponseMixin(object):
+    
     """
     Mixin to add AJAX support to a form.
     Must be used with an object-based FormView (e.g. CreateView)
     """
-    
     def form_invalid(self, form):
         response = super(AjaxableResponseMixin, self).form_invalid(form)
         if self.request.is_ajax():
@@ -109,8 +111,18 @@ class DetailGroup(DetailView):
     model = Group
 
 class CreateGroup(AjaxableResponseMixin, CreateView):
+    pkSentences = []
     model = Group
-    fields = ['groupname','sentences']
+    fields = ['groupname']
+    def get(self, request):
+        if request.GET.getlist('id[]'):
+            sent = []
+            for x in request.GET.getlist('id[]'):
+               sent.append(x)
+               self.pkSentences.append(x)
+            data = {'queryset' : serializers.serialize('json', Sentence.objects.all().filter(id__in=sent))}
+            return JsonResponse(json.loads(data['queryset']), safe=False)
+        return super().get(self,request)
     def form_valid(self, form):
         form.instance.creationdate = timezone.now()
         form.instance.userid = self.request.user

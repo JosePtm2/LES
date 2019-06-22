@@ -1,26 +1,24 @@
-<form id="ass" class="ajax">
-{% csrf_token %}
 <table class="table table-hover header-fixed my-5">
     <thead>
         <tr class="d-flex">
-            <th class="col-8"><h2>Frases</h2></th>
-            <th class="col-4 text-right">
+            <td class="col-8"><h2>Frases</h2></td>
+            <td class="col-4 text-right">
                 <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Mais antigo</a>
                     <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
                     <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
                 </div>
-            </th>
+            </td>
         </tr>
-    </thead>
-    <tbody style="max-height: 60vh;">
         {% if perms.Activities.add_sentence %}
-            <tr class="d-flex">
+            <tr class="d-flex" style="border-bottom:0px;">
                 <td class="col-12"><a data-toggle="modal" onclick='newModal("{% url "sentence_create" %}", "Nova Frase", "#modal","modal-lg")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Nova frase</h3></a></td>
             </tr>
         {% endif %}
-       
+    </thead>
+    <tbody style="max-height: 60vh;">
+        
             {% for frase in object_list %}
                 <tr class="d-flex markerDiv">
                     {% if perms.Activities.add_group and request.path == '/sentences/' %}<td class="d-block col-1"><input onclick="this.checked=!this.checked;" type="checkbox" name="markerType" id="{{ frase.id }}" class="mt-1"/></td>{% endif %}
@@ -34,10 +32,9 @@
             {% endfor %}
     </tbody>
 </table>
-<div class="newAss" style="display:none">
-    <button type="button" href="#" class="btn float-right text-white" data-toggle="modal" onclick='newModal("{% url "group_create" %}", "Novo Agrupamento", "#modal", "")'><i class="fas fa-link"></i> Associar frases a agrupamento</button>
+<div class="newChecked" style="display:none">
+    <button type="button" href="#" class="btn float-right text-white" data-toggle="modal" onclick='newModal("{% url "group_create" %}", "Novo Agrupamento", "#modal", "modal-lg")'><i class="fas fa-link"></i> Associar frases a agrupamento</button>
 </div>
-</form>
 
 
 <!-- onclick='newModal("{% url "group_create" %}", "Novo Agrupamento", "#modal", "")' -->

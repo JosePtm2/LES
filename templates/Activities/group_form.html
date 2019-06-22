@@ -1,6 +1,3 @@
 {% load crispy_forms_tags %}
-<div class="container">
-    {% csrf_token %}
-    {{ form|crispy }}
-</div>
-  
+{% csrf_token %}
+{{ form|crispy }}

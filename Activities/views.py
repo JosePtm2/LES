@@ -30,10 +30,14 @@ class AjaxableResponseMixin(object):
             messages.success(self.request,f"a")
         elif(self.request.path[1:7] == 'update'):
             messages.info(self.request,f"a")
-        if self.request.is_ajax():  
-            data = {
-                'pk': self.object.pk,
-            }
+        if self.request.is_ajax():
+            print(self.request.path)
+            if(self.request.path == '/create_group/'):
+                data = { 'local': 'groups/', 'pk': self.object.pk,}
+            elif(self.request.path == '/create_pattern/'):
+                data = { 'local': 'patterns/', 'pk': self.object.pk,}
+            else:
+                data = { 'local': 'nothing', 'pk': self.object.pk,}
             return JsonResponse(data)
         else:
             return response
@@ -128,6 +132,7 @@ class CreateGroup(AjaxableResponseMixin, CreateView):
         form.instance.userid = self.request.user
         form.instance.save()
         form.instance.sentences.set(Sentence.objects.all().filter(id__in=self.pkSentences))
+        self.pkSentences.clear()
         return super(CreateGroup, self).form_valid(form)
     success_url = reverse_lazy('group_list')
 
@@ -156,12 +161,25 @@ class DetailPattern(DetailView):
     model = Pattern
 
 class CreatePattern(AjaxableResponseMixin, CreateView):
+    pkGroup = []
     model = Pattern
-    fields = ['patternname', 'groups']
+    fields = ['patternname']
+    def get(self, request):
+        if request.GET.getlist('id[]'):
+            group = []
+            for x in request.GET.getlist('id[]'):
+               group.append(x)
+               self.pkGroup.append(x)
+            data = {'queryset' : serializers.serialize('json', Group.objects.all().filter(id__in=group))}
+            return JsonResponse(json.loads(data['queryset']), safe=False)
+        return super().get(self,request)
     def form_valid(self, form):
         form.instance.data_creation = timezone.now()
         form.instance.userid = self.request.user
-        return super(CreatePattern, self).form_valid(form)
+        form.instance.save()
+        form.instance.groups.set(Group.objects.all().filter(id__in=self.pkGroup))
+        self.pkGroup.clear()
+        return super().form_valid(form)
     success_url = reverse_lazy('pattern_list')
 
 class UpdatePattern(AjaxableResponseMixin, UpdateView):

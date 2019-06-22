@@ -126,6 +126,8 @@ class CreateGroup(AjaxableResponseMixin, CreateView):
     def form_valid(self, form):
         form.instance.creationdate = timezone.now()
         form.instance.userid = self.request.user
+        form.instance.save()
+        form.instance.sentences.set(Sentence.objects.all().filter(id__in=self.pkSentences))
         return super(CreateGroup, self).form_valid(form)
     success_url = reverse_lazy('group_list')
 

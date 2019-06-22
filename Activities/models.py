@@ -41,6 +41,7 @@ class Group(models.Model):
                           primary_key=True)
     userid = models.ForeignKey('Users.User',
                                models.DO_NOTHING,
+                               null=True,
                                db_column='UserID')
     groupname = models.CharField(db_column='GroupName',
                                  unique=True,

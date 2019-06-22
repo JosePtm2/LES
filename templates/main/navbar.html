@@ -34,52 +34,54 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<li class="sidebar-search nav-item active">
+					<!--<li class="sidebar-search nav-item active">
 						<div class="input-group">
-							<input type="text" class="form-control" name="search" placeholder="Procurar...">
-							<div class="input-group-btn search-panel">
-								<button type="button" class="btn btn-default text-white" data-toggle="dropdown">
-									<span id="search_concept">Tudo</span> <i class="fas fa-angle-down"></i> <span class="caret"></span>
-								</button>
-								<div class="dropdown-menu dropdown-menu-right" role="menu">
-									<a class="dropdown-item" href="#">Tudo</a>
-                                    {% if perms.Activities.view_sentence %}
-									<a class="dropdown-item" href="#">Frase</a>
-                                    {% endif %}
-                                    {% if perms.Activities.view_verb %}
-									<a class="dropdown-item" href="#">Verbo</a>
-                                    {% endif %}
-                                    {% if perms.Activities.view_resource %}
-									<a class="dropdown-item" href="#">Recurso</a>
-                                    {% endif %}
-                                    {% if perms.Activities.view_artefact %}
-									<a class="dropdown-item" href="#">Artefacto</a>
-                                    {% endif %}
-                                    {% if perms.Activities.view_group %}
-									<a class="dropdown-item" href="#">Agrupamentos</a>
-                                    {% endif %}
-                                    {% if perms.Activities.view_pattern %}
-									<a class="dropdown-item" href="#">Padrões</a>
-                                    {% endif %}
-                                    {% if perms.Processes.view_activity %}
-									<a class="dropdown-item" href="#">Atividades</a>
-                                    {% endif %}
-                                    {% if perms.Processes.view_process %}
-									<a class="dropdown-item" href="#">Processos</a>
-                                    {% endif %}
-                                    {% if perms.Processes.view_role %}
-									<a class="dropdown-item" href="#">Papéis</a>
-                                    {% endif %}
-                                    {% if perms.Processes.view_product %}
-									<a class="dropdown-item" href="#">Produtos</a>
-                                    {% endif %}
+							<form class="form-inline" method="GET">
+								<input type="search" class="form-control" name="search" placeholder="Procurar...">
+								<div class="input-group-btn search-panel">
+									<button type="button" class="btn btn-default text-white" data-toggle="dropdown">
+										<span id="search_concept">Tudo</span> <i class="fas fa-angle-down"></i> <span class="caret"></span>
+									</button>
+									<div class="dropdown-menu dropdown-menu-right" role="menu">
+										<a class="dropdown-item" href="#">Tudo</a>
+	                                    {% if perms.Activities.view_sentence %}
+										<a class="dropdown-item" href="#">Frase</a>
+	                                    {% endif %}
+	                                    {% if perms.Activities.view_verb %}
+										<a class="dropdown-item" href="#">Verbo</a>
+	                                    {% endif %}
+	                                    {% if perms.Activities.view_resource %}
+										<a class="dropdown-item" href="#">Recurso</a>
+	                                    {% endif %}
+	                                    {% if perms.Activities.view_artefact %}
+										<a class="dropdown-item" href="#">Artefacto</a>
+	                                    {% endif %}
+	                                    {% if perms.Activities.view_group %}
+										<a class="dropdown-item" href="#">Agrupamentos</a>
+	                                    {% endif %}
+	                                    {% if perms.Activities.view_pattern %}
+										<a class="dropdown-item" href="#">Padrões</a>
+	                                    {% endif %}
+	                                    {% if perms.Processes.view_activity %}
+										<a class="dropdown-item" href="#">Atividades</a>
+	                                    {% endif %}
+	                                    {% if perms.Processes.view_process %}
+										<a class="dropdown-item" href="#">Processos</a>
+	                                    {% endif %}
+	                                    {% if perms.Processes.view_role %}
+										<a class="dropdown-item" href="#">Papéis</a>
+	                                    {% endif %}
+	                                    {% if perms.Processes.view_product %}
+										<a class="dropdown-item" href="#">Produtos</a>
+	                                    {% endif %}
+									</div>
 								</div>
-							</div>
-							<button class="btn text-white">
-								<i class="fa fa-search"></i>
-							</button>
+								<button class="btn text-white">
+									<i class="fa fa-search"></i>
+								</button>
+							</form>
 						</div>
-					</li>
+					</li>-->
 					<li class="nav-item">
 						<div class="btn-group">
 							<button type="button" class="btn btn-warning text-left dropdown-toggle" style="width:100px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Novo </button>

@@ -1,7 +1,16 @@
 <table class="table table-hover header-fixed my-5">
     <thead>
         <tr class="d-flex">
-            <td class="col-8"><h2>Frases</h2></td>
+            <td class="col-8">
+                <h2 class="d-inline mr-4 mt-4">Frases</h2>
+                {% if request.path != '/' %}<form class="d-inline form-inline mt-3" method="GET">
+                    <input type="search" class="form-control" name="search" placeholder="Procurar...">
+                    <button class="btn text-white">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                {% endif %}
+            </td>
             <td class="col-4 text-right">
                 <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
                 <div class="dropdown-menu">
@@ -17,8 +26,7 @@
             </tr>
         {% endif %}
     </thead>
-    <tbody style="max-height: 60vh;">
-        
+    <tbody style="max-height: 55vh;">
             {% for frase in object_list %}
                 <tr class="d-flex markerDiv">
                     {% if perms.Activities.add_group and request.path == '/sentences/' %}<td class="d-block col-1"><input onclick="this.checked=!this.checked;" type="checkbox" name="markerType" id="{{ frase.id }}" class="mt-1"/></td>{% endif %}

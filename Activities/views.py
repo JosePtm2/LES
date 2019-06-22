@@ -46,6 +46,11 @@ class AjaxableResponseMixin(object):
 class ListVerb(ListView):
     model = Verb
 
+    def get_queryset(self):
+        if 'search' in self.request.GET:
+            return Search_verb(self.request)
+        return super(ListVerb, self).get_queryset()
+
 class DetailVerb(DetailView):
     model = Verb
 
@@ -74,6 +79,11 @@ class DeleteVerb(DeleteView):
 #==========   SENTENCE   ==========#
 class ListSentence(ListView):
     model = Sentence
+    
+    def get_queryset(self):
+        if 'search' in self.request.GET:
+            return Search_sentence(self.request)
+        return super(ListSentence, self).get_queryset()
     
 class DetailSentence(DetailView):
     model = Sentence
@@ -110,6 +120,11 @@ class DeleteSentence(DeleteView):
 #==========   GROUP   ==========#
 class ListGroup(ListView):
     model = Group
+
+    def get_queryset(self):
+        if 'search' in self.request.GET:
+            return Search_Group(self.request)
+        return super(ListGroup, self).get_queryset()
 
 class DetailGroup(DetailView):
     model = Group
@@ -157,6 +172,11 @@ class DeleteGroup(DeleteView):
 class ListPattern(ListView):
     model = Pattern
 
+    def get_queryset(self):
+        if 'search' in self.request.GET:
+            return Search_Pattern(self.request)
+        return super(ListPattern, self).get_queryset()
+
 class DetailPattern(DetailView):
     model = Pattern
 
@@ -203,6 +223,11 @@ class DeletePattern(DeleteView):
 class ListResource(ListView):
     model = Resource
 
+    def get_queryset(self):
+        if 'search' in self.request.GET:
+            return Search_Resource(self.request)
+        return super(ListResource, self).get_queryset()
+
 class DetailResource(DetailView):
     model = Resource
 
@@ -235,6 +260,11 @@ class DeleteResource(DeleteView):
 class ListArtefact(ListView):
     model = Artefact
 
+    def get_queryset(self):
+        if 'search' in self.request.GET:
+            return Search_Artefact(self.request)
+        return super(ListArtefact, self).get_queryset()
+
 class DetailArtefact(DetailView):
     model = Artefact
 
@@ -258,3 +288,58 @@ class DeleteArtefact(DeleteView):
         messages.warning(self.request,f"a")
         return super(DeleteArtefact, self).delete(request, *args, **kwargs)
 #==========   ARTEFACT   ==========#
+
+#=========== Search ===============#
+def Search_verb(request):
+    search_term=''
+    search_term = request.GET['search']
+    verbs = Verb.objects.filter(verbname__icontains=search_term)
+
+    context = {"verbs": verbs,}
+
+    return verbs
+
+def Search_sentence(request):
+    search_term=''
+    search_term = request.GET['search']
+    sentences = Sentence.objects.filter(sentencename__icontains=search_term)
+
+    context = {"sentences": sentences,}
+
+    return sentences
+
+def Search_Artefact(request):
+    search_term=''
+    search_term = request.GET['search']
+    artefact = Artefact.objects.filter(artefactname__icontains=search_term)
+
+    context = {"artefact": artefact,}
+
+    return artefact
+
+def Search_Resource(request):
+    search_term=''
+    search_term = request.GET['search']
+    resource = Resource.objects.filter(resourcename__icontains=search_term)
+
+    context = {"resource": resource,}
+
+    return resource
+
+def Search_Group(request):
+    search_term=''
+    search_term = request.GET['search']
+    group = Group.objects.filter(groupname__icontains=search_term)
+
+    context = {"group": group,}
+
+    return group
+
+def Search_Pattern(request):
+    search_term=''
+    search_term = request.GET['search']
+    pattern = Pattern.objects.filter(patternname__icontains=search_term)
+
+    context = {"pattern": pattern,}
+
+    return pattern

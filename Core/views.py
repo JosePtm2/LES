@@ -67,20 +67,20 @@ class SearchResultsView(ListView):
                 Q(verbid__verbname__icontains=query_frase_verbo) &
                 Q(subject__icontains=query_frase_sujeito) &
                 Q(receiver__icontains=query_frase_receptor)
-            ),
+            ).distinct(),
             'verbs': Verb.objects.all().filter(
                 Q(verbname__icontains=query_name) &
                 Q(verbtype__icontains=query_verbo_tipo)
-            ),
+            ).distinct(),
             'groups': Group.objects.all().filter(
                 Q(groupname__icontains=query_name) &
                 Q(creationdate__range=[query_date_initial, query_date_final]) &
                 Q(sentences__sentencename__icontains=query_group_frases)
-            ),
+            ).distinct(),
             'patterns': Pattern.objects.all().filter(
                 Q(patternname__icontains=query_name) &
                 Q(data_creation__range=[query_date_initial, query_date_final]) &
                 Q(groups__groupname__icontains=query_pattern_group)
-            ),
+            ).distinct(),
         })
         return context

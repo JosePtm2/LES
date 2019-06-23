@@ -22,7 +22,8 @@ class Pattern(models.Model):
                                models.DO_NOTHING,
                                db_column='UserID')
     patternname = models.CharField(db_column='PatternName',
-                                   max_length=255)
+                                   max_length=255,
+                                   verbose_name='Padrão')
     image = models.TextField(db_column='Image',
                              blank=True,
                              null=True)
@@ -46,8 +47,7 @@ class Group(models.Model):
     groupname = models.CharField(db_column='GroupName',
                                  unique=True,
                                  max_length=255,
-                                 blank=True,
-                                 null=True)
+                                 verbose_name='Agrupamento')
     creationdate = models.DateField(db_column='CreationDate',
                                     blank=True,
                                     null=True)

@@ -142,12 +142,8 @@
                 data: $(this).serialize(),
                 dataType: 'json',
                 success: function(data) {
-                    if(data.local == 'nothing'){
-                        window.location = '{{ request.path }}';
-                    }
-                    else{
-                        window.location.href = '../'+data.local;
-                    }
+                    if( data.local == '' ){ window.location.href = '{{ request.path }}'; }
+                    else { window.location.href = '../'+data.local; }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     $(".errorMessage").remove();

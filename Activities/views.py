@@ -36,8 +36,16 @@ class AjaxableResponseMixin(object):
                 data = { 'local': 'groups/', 'pk': self.object.pk,}
             elif(self.request.path == '/create_pattern/'):
                 data = { 'local': 'patterns/', 'pk': self.object.pk,}
+            elif(self.request.path == '/create_verb/'):
+                data = { 'local': 'verbs/', 'pk': self.object.pk,}
+            elif(self.request.path == '/create_sentence/'):
+                data = { 'local': 'sentences/', 'pk': self.object.pk,}
+            elif(self.request.path == '/create_artefact/'):
+                data = { 'local': 'artefacts/', 'pk': self.object.pk,}
+            elif(self.request.path == '/create_resource/'):
+                data = { 'local': 'resources/', 'pk': self.object.pk,}
             else:
-                data = { 'local': 'nothing', 'pk': self.object.pk,}
+                data = { 'local': '', 'pk': self.object.pk,}
             return JsonResponse(data)
         else:
             return response

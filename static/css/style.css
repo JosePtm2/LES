@@ -11,7 +11,7 @@ body::-webkit-scrollbar-track ,.header-fixed > tbody::-webkit-scrollbar-track{
     background-color:#CCC;
 }
 body::-webkit-scrollbar-thumb, .header-fixed > tbody::-webkit-scrollbar-thumb {
-  background-color:#767676;
+  background:#f9f9f9;
   border-radius:10px;
   border-style:solid;
   border-width:1px;
@@ -67,6 +67,8 @@ a,a:hover,a:focus{
     border-radius: 0;
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    background:#FFF;
+    margin-top:-10px;
 }
 .navbar-btn{
     box-shadow: none;
@@ -90,7 +92,7 @@ a,a:hover,a:focus{
 #sidebar{
 	width: 15%;
     min-width: 200px;
-    color: #eeeeee;
+    background:#058096;
     transition: all 0.3s;
 }
 #sidebar.active{
@@ -99,7 +101,7 @@ a,a:hover,a:focus{
 #sidebar .sidebar-header{
     padding: 20px 0px 20px 0px;
 	text-align: center;
-    background: #000;
+    background:#058096;
 }
 #sidebar ul.components{
     padding: 0px 0px 0px 0px;
@@ -254,6 +256,10 @@ form div{
 
 #path{
     margin-top:100px;
+}
+
+.titulo-principal{
+    margin-top:10px;
 }
 
 /* ---------------------------------------------------

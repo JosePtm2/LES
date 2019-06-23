@@ -1,3 +1,3 @@
 {% if perms.Activities.add_pattern %}
-    <a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "pattern_create" %}", "Novo Padrão", "#modal", "")' href="">Padrão</a>
+    <a class="dropdown-item" href="{% url 'group_list' %}">Padrão</a>
 {% endif %}

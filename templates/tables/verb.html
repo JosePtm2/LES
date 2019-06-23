@@ -3,7 +3,7 @@
       <tr class="d-flex">
             <td class="col-8">
                 <h2 class="d-inline mr-4 mt-4">Verbos</h2>
-                {% if request.path != '/' %}<form class="d-inline form-inline mt-3" method="GET">
+                {% if request.path == '/verbs/' %}<form class="d-inline form-inline mt-3" method="GET">
                     <input type="search" class="form-control" name="search" placeholder="Procurar...">
                     <button class="btn text-white">
                         <i class="fa fa-search"></i>
@@ -11,7 +11,7 @@
                 </form>
                 {% endif %}
             </td>
-            <td class="col-3 text-right">
+            <td class="col-4 text-right">
                 <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Mais antigo</a>

@@ -83,7 +83,7 @@ class Sentence(models.Model):
     receiver = models.CharField(db_column='Receiver',
                                 max_length=255,
                                 blank=True,
-                                null=True,
+                                null=False,
                                 verbose_name="Recetor")
     datarealizado = models.DateField(db_column='DataRealizado',blank=True, null=True)
     verbid = models.ForeignKey('Verb',

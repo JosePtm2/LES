@@ -7,6 +7,8 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 from django.core import serializers
 import json
+from django import forms
+from django.contrib.admin.widgets import AdminDateWidget
 
 # Create your views here.
 
@@ -95,7 +97,11 @@ class ListSentence(ListView):
     
 class DetailSentence(DetailView):
     model = Sentence
-    
+
+BIRTH_YEAR_CHOICES = ['2000', '2001', '2002', '2003', '2004', '2005', '2006',
+                      '2007', '2008', '2009', '2010', '2011', '2012', '2013',
+                      '2014', '2015', '2016', '2017', '2018', '2019']
+
 class CreateSentence(AjaxableResponseMixin, CreateView):
     model = Sentence
     fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'resourceid', 'artefactid', 'datarealizado']
@@ -106,6 +112,12 @@ class CreateSentence(AjaxableResponseMixin, CreateView):
         form.instance.userid = self.request.user
         return super(CreateSentence, self).form_valid(form)
     success_url = reverse_lazy('sentence_list')    
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+        form = super(CreateSentence, self).get_form(form_class)
+        form.fields['datarealizado'] = forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
+        return form 
     
 
 class UpdateSentence(AjaxableResponseMixin, UpdateView):

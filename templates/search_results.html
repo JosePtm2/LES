@@ -17,6 +17,10 @@
   {% if perms.Activities.add_pattern %}
   {% include "tables/pattern.html" with object_list=patterns %}
   {% endif %}
+  {% if perms.Activities.add_verb %}
+  {% include "tables/verb.html" with object_list=verbs %}
+  {% endif %}
+
   <!--{% if perms.Processes.add_process %}
       {% include "tables/process.html" with object_list=processes %}
       {% endif %}

@@ -17,4 +17,5 @@ class SentenceForm(forms.ModelForm):
     class Meta:
         model = Sentence
         fields = ['sentencename', 'subject', 'verb_sug', 'verbid',
-                  'receiver', 'resourceid', 'artefactid', 'datarealizado']
+                  'receiver', 'resource_sug', 'resourceid',
+                  'art_sug', 'artefactid', 'datarealizado']

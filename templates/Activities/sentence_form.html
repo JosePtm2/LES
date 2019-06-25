@@ -42,12 +42,24 @@
     <div class="col-6">
       {{ p|as_crispy_field }}
     </div>
-    {% elif p.name == "artefactid" %}
+    {% elif p.name == "resource_sug" %}
     <div class="col-6">
       {{ p|as_crispy_field }}
     </div>
     {% endif %}
     {% endfor %}
+        {% for p in form %}
+    {% if p.name == "artefactid" %}
+    <div class="col-6">
+      {{ p|as_crispy_field }}
+    </div>
+    {% elif p.name == "art_sug" %}
+    <div class="col-6">
+      {{ p|as_crispy_field }}
+    </div>
+    {% endif %}
+    {% endfor %}
+
   </div>
   <!--{{ form|crispy }}-->
 </div>

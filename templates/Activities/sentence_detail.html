@@ -18,9 +18,19 @@
             <h6 class="mt-4">Recetor:</h6>
             <p>{{object.receiver}}</p>
             <h6 class="mt-4">Recurso:</h6>
+            {% if object.resourceid %}
             <p>{{object.resourceid}}</p>
+            {% else %}
+            <p>{{object.resourcesug}}</p>
+            {% endif %}
+
             <h6 class="mt-4">Artefacto:</h6>
+            {% if object.artefactid %}
             <p>{{object.artefactid}}</p>
+            {% else %}
+            <p>{{object.art_sug}}</p>
+            {% endif %}
+
         </div>
         <div class="col-5">
             <h4>Detalhes de Criação</h4>

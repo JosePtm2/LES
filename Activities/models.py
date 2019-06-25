@@ -61,6 +61,10 @@ class Sentence(models.Model):
 
     verb_sug = models.CharField(db_column='VerbSug', max_length=255, verbose_name="Verbo Sugerido", blank=True)
 
+    resource_sug = models.CharField(db_column='ResourceSug', max_length=255, verbose_name="Recurso Sugerido", blank=True)
+
+    art_sug = models.CharField(db_column='ArtefactSug', max_length=255, verbose_name="Artefacto Sugerido", blank=True)
+
     class Meta:
         managed = True
         db_table = 'Sentence'

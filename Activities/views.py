@@ -348,12 +348,15 @@ class CreateResource(AjaxableResponseMixin, CreateView):
 
     def form_valid(self, form):
 
+        form.instance.datecreated = timezone.now()
+        form.instance.userid = self.request.user
+        form.instance.save()
         q = Sentence.objects.filter(
-            verb_sug__icontains=form.instance.verbname).filter(
+            resource_sug__icontains=form.instance.resourcename).filter(
                 userid__organization=self.request.user.organization)
 
         for sentence in q:
-            sentence.resource = form.instance
+            sentence.resourceid = form.instance
             sentence.save()
 
         form.instance.datecreated = timezone.now()
@@ -410,12 +413,17 @@ class CreateArtefact(AjaxableResponseMixin, CreateView):
 
     def form_valid(self, form):
 
+        form.instance.datecreated = timezone.now()
+        form.instance.userid = self.request.user
+        form.instance.save()
         q = Sentence.objects.filter(
-            verb_sug__icontains=form.instance.verbname).filter(
+            art_sug__icontains=form.instance.artefactname).filter(
                 userid__organization=self.request.user.organization)
 
+        print(form.instance)
+        
         for sentence in q:
-            sentence.artefact = form.instance
+            sentence.artefactid = form.instance
             sentence.save()
 
         form.instance.datecreated = timezone.now()

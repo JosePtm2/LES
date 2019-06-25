@@ -1,0 +1,13 @@
+<div class="container">
+    {% csrf_token %}
+    Tem a certeza que deseja eliminar o Artefacto?<br><br>
+    <p>{{ object.artefactname }}</p>
+</div>
+<p class="text-danger">Este artefacto está associado às seguintes frases </p>
+    {% for g in groups %}
+    
+    {% if object == g.artefactid %}
+    
+    <p>{{g}}</p>
+        {% endif %}
+        {% endfor %}

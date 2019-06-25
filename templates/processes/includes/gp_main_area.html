@@ -1,0 +1,218 @@
+<div class="container showlist">
+	<table class="table table-hover header-fixed">
+		<thead>
+			<tr class="d-flex">
+				<th class="col-9">MEUS PROCESSOS</th>
+				<th class="col-3 text-right">
+					<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Mais antigo</a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+					</div>
+				</th>
+			</tr>
+			{% if perms.Users.test_GProc %}
+			<tr class="d-flex nobluebar">
+				<td class="col-9"><b><a href="/processos/ProcessCreate" class="novo"><i class="material-icons">add</i> Novo processo</a></b></td>
+				<td class="col-3 text-right"></td>
+			</tr>{% endif %}
+			{% if procs|length > 0 %}
+			<tr class="d-flex nobluebar">
+					<td class="col-3"><b>Processo:</b> </td>
+					<td class="col-3"><b>Criado por: </b></td>
+				</tr>
+				{% endif %}
+		</thead>
+		<tbody class ="proctable">
+				{% for proc in procs %} 
+				<tr class="d-flex">
+				
+						<td class="col-3"><a href="/processos/ProcessDetail/{{proc.id}}">{{proc.process_name}} </a></td>
+						<td class="col-3">{{proc.user.username}} </td>
+						<td class="col-6 text-right"><a href="/processos/ProcessUpdate/{{proc.id}} "><i class="material-icons">create</i></a>
+						<a href="/processos/ProcessDelete/{{proc.id}} "><i class="material-icons text-danger">clear</i></a></td>
+			
+					</tr>
+					{% endfor %}
+		
+		</tbody>
+	</table>
+	<br>
+	<table class="table table-hover header-fixed">
+		<thead>
+			<tr class="d-flex">
+				<th class="col-9">ACTIVIDADES BASE</th>
+				<th class="col-3 text-right">
+					<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+					<div class="dropdown-menu">
+						
+						<a class="dropdown-item" href="#">Mais antigo</a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+						
+					</div>
+				</th>
+			</tr>
+			<tr class="d-flex nobluebar">
+				<td class="col-9"><b><a href="/actividades/ActivityCreate" class="novo"><i class="material-icons">add</i> Nova actividade</a></b></td>
+				<td class="col-3 text-right"></td>
+			</tr>
+			{% if acts|length > 0 %}
+			<tr class="d-flex nobluebar">
+					<td class="col-3"><b>Actividade:</b> </td>
+				</tr>
+				{% endif %}
+	
+		</thead>
+		<tbody class ="proctable">
+		
+			{% for act in acts %}
+			
+			<tr class="d-flex">
+					<td class="col-3"><a href="/actividades/ActivityDetail/{{act.id}}">{{act.activity_name}}</a></td>
+					<td class="col-3"><a href="/processos/ProcessDetail/{{act.process.process_id}}">{{act.process.process_name}}</a></td>
+					<td class="col-6 text-right"><a href="/actividades/ActivityUpdate/{{act.id}} "><i class="material-icons">create</i></a>
+					<a href="/actividades/ActivityDelete/{{act.id}} "><i class="material-icons text-danger">clear</i></a></td>
+				</tr>
+			
+				{% endfor %}
+		</tbody>
+
+	</table>
+	<br>
+	{% if proc_acts|length > 0 %}
+	<table class="table table-hover header-fixed">
+			<thead>
+				<tr class="d-flex">
+					<th class="col-9">ACTIVIDADES DE PROCESSOS</th>
+					<th class="col-3 text-right">
+						<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+						<div class="dropdown-menu">
+							
+							<a class="dropdown-item" href="#">Mais antigo</a>
+							<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+							<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+							
+						</div>
+					</th>
+				</tr>
+		
+				<tr class="d-flex nobluebar">
+						<td class="col-3"><b>Actividade:</b> </td>
+						<td class="col-3"><b>Processo: </b></td>
+					</tr>
+					
+		
+			</thead>
+			<tbody class ="proctable">
+			
+				{% for act in proc_acts %}
+				
+				<tr class="d-flex">
+						<td class="col-3"><a href="/actividades/ActivityDetail/{{act.id}}">{{act.activity_name}}</a></td>
+						{% if perms.Users.test_GProc %}	<td class="col-3"><a href="/processos/ProcessDetail/{{act.process.process_id}}">{{act.process.process_name}}</a></td>
+						<td class="col-6 text-right"><a href="/actividades/ActivityUpdate/{{act.id}} "><i class="material-icons">create</i></a>
+						<a href="/actividades/ActivityDelete/{{act.id}} "><i class="material-icons text-danger">clear</i></a></td>
+				{% endif%}	</tr>
+				
+					{% endfor %}
+			</tbody>
+	
+		</table>
+		{% endif %}
+	<br>
+
+
+	<table class="table table-hover header-fixed">
+		<thead>
+			<tr class="d-flex">
+				<th class="col-9">MEUS PAPÉIS</th>
+				<th class="col-3 text-right">
+					<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+					<div class="dropdown-menu">
+						
+						<a class="dropdown-item" href="#">Mais antigo</a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+					</div>
+				</th>
+			</tr>
+			{% if perms.Users.test_GProc %}
+			<tr class="d-flex nobluebar">
+				<td class="col-9"><b><a href="/papeis/RoleCreate" class="novo"><i class="material-icons">add</i> Novo Papel</a></b></td>
+				<td class="col-3 text-right"></td>
+			</tr>{% endif %}
+			{% if roles|length > 0 %}
+			<tr class="d-flex nobluebar">
+				<td class="col-3"><b>Papel:</b> </td>
+				<td class="col-3"><b>Actividade: </b></td>
+			</tr>
+			{% endif %}
+		</thead>
+		<tbody class ="proctable">
+				{% for role in roles %}
+				<tr class="d-flex">
+				
+						<td class="col-3"><span><a href="/papeis/RoleDetail/{{role.id}}">{{role.role_name}} </a></span></td>
+						<td class="col-3">
+							{% for act in acts %}
+							{% for rol in act.role.all %}
+								{% if rol.id == role.id %}
+									<br>
+									{{act.activity_name}}
+									{% endif %}
+							{% endfor %}	
+							{% endfor %}</td>
+						</span></td>
+						{% if perms.Users.test_GProc %}
+						<td class="col-6 text-right"><a href="/papeis/RoleUpdate/{{role.id}} "><i class="material-icons">create</i></a>
+						<a href="/papeis/RoleDelete/{{role.id}} "><i class="material-icons text-danger">clear</i></a></td>
+		{% endif %}
+					</tr>
+					{% endfor %}
+		</tbody>
+	</table>
+	<br>
+	<table class="table table-hover header-fixed">
+		<thead>
+			<tr class="d-flex">
+				<th class="col-9">MEUS PRODUTOS</th>
+				<th class="col-3 text-right">
+					<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+					<div class="dropdown-menu">
+						
+						<a class="dropdown-item" href="#">Mais antigo</a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+						<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+					</div>
+				</th>
+			</tr>
+			<tr class="d-flex nobluebar">
+				<td class="col-9"><b><a href="/produtos/ProductCreate" class="novo"><i class="material-icons">add</i> Registar produto</a></b></td>
+				<td class="col-3 text-right"></td>
+			</tr>
+			{% if prods|length > 0 %}
+			<tr class="d-flex nobluebar">
+				<td class="col-3"><b>Produto:</b> </td>
+				<td class="col-3"><b>Formato: </b></td>
+			</tr>
+			{% endif %}
+		</thead>
+		<tbody class ="proctable">
+			
+			{% for prod in prods %}
+		
+			<tr class="d-flex">
+					<td class="col-3"> <a href="/produtos/ProductDetail/{{prod.id}}">{{prod.product_name}}</a></td>
+					<td class="col-3"> {{prod.product_format}}</td>
+					<td class="col-6 text-right"><b><a href="/produtos/ProductUpdate/{{prod.id}} "><i class="material-icons">create</i></a>
+					<a href="/produtos/ProductDelete/{{prod.id}} "><i class="material-icons text-danger">clear</i></a></td>
+				</tr>
+			
+				{% endfor %}
+		</tbody>
+	</table>
+</div>
+</div>
+</div>

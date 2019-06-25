@@ -1,0 +1,68 @@
+
+div.container.showlist > .header-fixed > tbody {
+    overflow-y: auto;
+    height: 30vh;
+}
+
+div.control-group div.controls{
+    width:40vw;
+    display: flex;
+    flex-wrap:wrap;
+    flex-basis: 100%;
+    margin-bottom: 15px;
+}
+
+.control-group div.controls > label.checkbox{
+width:100%;
+padding: 1px;
+}
+
+.control-group div.controls > label.checkbox > input{
+    margin-right: 5px;
+    }
+
+.asteriskField {
+    display: none;
+}
+
+.colseparator {
+border-right:2px dashed rgb(30, 168, 214);;
+}
+
+div.row > div.col-sm-6 > div.row {
+    border-bottom: 2px dashed lightblue;
+}
+
+
+#div_id_pattern> .controls,#div_id_role> .controls,#div_id_product> .controls,#div_id_activity > .controls{
+    max-height:30vh;
+    overflow-y:auto;
+}
+
+thead > tr.nobluebar{
+    border-bottom:0px;
+}
+
+tbody {
+    overflow-x : hidden;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.legendrow > div {
+font-weight: bold;
+}
+
+thead > tr{
+    border-top: 0px;
+}
+.table thead th{
+    border-top:0px;
+}
+
+.nav-item .dropdown > a.nav-link{
+    font-size:1em;
+}
+
+.nav-item > div.btn-group > button{
+    width:100px;
+}

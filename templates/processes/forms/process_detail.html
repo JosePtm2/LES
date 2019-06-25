@@ -1,0 +1,62 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+{% if perms.Users.test_GProc or perms.Users.test_Analist  %}
+<div class="container">
+  {% include "processes/includes/messages.html" %}
+
+        <h3>Processo: {{object.process_name}} </h3>
+        <hr>
+            <div class="row">
+                <div class="col-sm-2">Criado por: </div> 
+                <div class="col-sm-2"> {{object.user}}</div>
+                </div>
+                <hr>
+            <div class="row">
+                  <div class="col-sm-2">Empresa: </div> 
+                  <div class="col-sm-2"> {{object.user.organization}}</div>
+                  </div>
+                  <hr>
+         <div class="row">
+                <div class="col-sm-2"> Data criação:</div>
+                <div class="col-sm-3">{{object.creation_date}}</div>
+            </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-2"> Descrição:</div>
+            <div class="col-sm-4">{{object.description}}</div>
+        </div>
+      <hr>
+      {% if perms.Users.test_GProc %}
+        <p><a href="/processos/ProcessUpdate/{{object.id}}"> <button type="button" class="btn text-white">Editar processo</button></a></p>
+       {% endif %} <br>
+        <h3>Actividades associadas ao Processo </h3>
+        <hr>
+        {% for act in proc_acts %}
+        <div class="row">
+        <div class="col-sm-4"><a href="/actividades/ActivityDetail/{{act.id}}">{{act}}</a></div>
+        <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewActivity" act.id %}", "Ver Actividade", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;</a>
+        {% if perms.Users.test_GProc %}
+        <a href="/actividades/ActivityDessociate/{{act.id}}"><i class="material-icons text-danger">clear</i>&nbsp;</a>
+        {% endif %}
+        </div></div>
+        {% endfor %}
+        <hr>
+        <br>
+        <h3>Actividades base disponíveis: </h3>
+        <hr>
+        {% for act in non_acts %}
+        <div class="row">
+        <div class="col-sm-4"><a href="/actividades/ActivityDetail/{{act.id}}">{{act}}</a></div>
+        <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewActivity" act.id %}", "Ver Actividade", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;</a>
+        {% if perms.Users.test_GProc %}
+        <a href="/actividades/ActivitySwap/{{act.id}}/{{pid}}"><i class="material-icons text-success">add</i>&nbsp;</a>
+        {% endif %}
+        </div></div>
+        {% endfor %}
+        <hr>
+
+        </div>
+        {% else %}
+        <h2>Não tem permissão para visualizar esta página.</h2>
+        {% endif %}
+        {% endblock %}

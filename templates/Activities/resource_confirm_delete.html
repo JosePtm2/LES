@@ -1,0 +1,12 @@
+<div class="container">
+        {% csrf_token %}
+        Tem a certeza que deseja eliminar o Recurso?<br><br>
+        <p>{{ object.resourcename }}</p></div>
+    <p class="text-danger">Este recurso está associado às seguintes frases </p>
+    {% for g in groups %}
+    
+    {% if object == g.resourceid %}
+    
+    <p>{{g}}</p>
+        {% endif %}
+        {% endfor %}

@@ -1,0 +1,59 @@
+
+				<div class="container">
+						<div class="container-fluid" style=" margin-top:-25px;">
+								<div class="row">
+									<div class="navegation">
+										<a href='{% url "home" %}'><i class="material-icons">home</i></a>
+										<i class="material-icons" style="position:relative; top:5px;">keyboard_arrow_right</i>
+										<b><span class="text-dark" id="path">Empresas</span></b>
+									</div>
+				<br><br>
+				{% include "processes/includes/messages.html" %}
+					<table class="table table-hover header-fixed">
+						<thead>
+							<tr class="d-flex">
+								<th class="col-9">Empresas</th>
+								<th class="col-3 text-right">
+									<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Mais antigo</a>
+										<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+										<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+									</div>
+								</th>
+							</tr>
+							<tr class="d-flex nobluebar">
+									<td class="col-9"><b><a href="/empresas/OrganizationCreate" class="novo"><i class="material-icons">add</i>Registar Empresa</a></b></td>
+									<td class="col-3 text-right"></td>
+								</tr>	
+								{% if orgs|length > 0 %}
+							<tr class="d-flex nobluebar">
+								<td class="col-3"><b>Nome:</b> </td>
+								<td class="col-3"><b>Localização:</b> </td>
+				
+							</tr>
+							{% endif %}
+						</thead>
+						<tbody class="proctable">
+								{% for org in orgs %}
+								<tr class="d-flex">
+										<td class="col-3"><span><a href="/empresas/OrganizationDetail/{{org.id}}">{{org.name}} </a></span></td>
+										<td class="col-3"><span>{{org.location}}</span></td>	
+										<td class="col-6 text-right"><a href="/empresas/OrganizationUpdate/{{org.id}} "><i class="material-icons">create</i></a>
+										<a href="/empresas/OrganizationDelete/{{org.id}} "><i class="material-icons text-danger">clear</i></a></td>
+									
+									</tr>
+									{% endfor %}
+							
+							</tr>
+
+						</tbody>
+				
+					</table>
+					<div class="brk">
+					</div>
+					
+				</div>
+            </div>
+		</div>
+		

@@ -1,0 +1,8 @@
+{% if perms.Users.test_Admin %}
+<li {% if request.path == "/utilizadores/" %} class="active" {% endif %}>
+	<a href="/utilizadores"><i class="material-icons">play_arrow</i> Utilizadores</a>
+</li>
+<li {% if request.path == "/empresas/" %} class="active" {% endif %}>
+	<a href="/empresas"><i class="material-icons">play_arrow</i> Empresas</a>
+</li>
+{% endif %}

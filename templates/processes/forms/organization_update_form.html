@@ -1,0 +1,20 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+{% if perms.Users.test_Admin %}  
+<div class="container">
+    
+<form method="post">{% csrf_token %}
+        {{ form|crispy}}
+    
+        <a href="/empresas" class="text-danger">Cancelar</a>
+        <button type="submit" class="btn text-white">Guardar</button>
+
+</form>
+
+</div>
+{% else %}
+<h2>Não tem permissão para realizar esta ação.</h2>
+{% endif %}
+{% endblock %}

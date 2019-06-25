@@ -1,0 +1,12 @@
+<div class="container">
+        {% csrf_token %}
+        Tem a certeza que deseja eliminar a Frase?<br><br>
+        <p>{{ object.sentencename }}</p></div>
+    <p class="text-danger">Esta Frase está associada aos seguintes agrupamentos</p>
+    {% for g in groups %}
+    
+    {% if object in g.sentences.all %}
+    
+    <p>{{g}}</p>
+        {% endif %}
+        {% endfor %}

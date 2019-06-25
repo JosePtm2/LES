@@ -1,0 +1,109 @@
+	
+				{% extends "main/navbar.html" %}
+				{% block content %}
+				{% if perms.Users.test_GProc or perms.Users.test_Analist %}
+				<div class="container">
+						<div class="container-fluid" style=" margin-top:-25px;">
+								<div class="row">
+									<div class="navegation">
+										<a href='{% url "home" %}'><i class="material-icons">home</i></a>
+										<i class="material-icons" style="position:relative; top:5px;">keyboard_arrow_right</i>
+										<b><span class="text-dark" id="path">Actividades</span></b>
+									</div>
+				<br><br>
+				{% include "processes/includes/messages.html" %}
+					<table class="table table-hover header-fixed">
+						<thead>
+							<tr class="d-flex">
+								<th class="col-9">ACTIVIDADES BASE</th>
+								<th class="col-3 text-right">
+									<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Mais antigo</a>
+										<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+										<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+									</div>
+								</th>
+							</tr>
+							<tr class="d-flex nobluebar">
+									<td class="col-9"><b><a href="/actividades/ActivityCreate" class="novo"><i class="material-icons">add</i> Nova Actividade</a></b></td>
+									<td class="col-3 text-right"></td>
+								</tr>
+								{% if acts|length > 0 %}
+							<tr class="d-flex nobluebar">
+								<td class="col-2"><b>Actividade:</b> </td>
+								<td class="col-4"><b>Descrição: </b></td>
+								
+							</tr>
+							{% endif %}
+					</thead>
+						<tbody class="proctable">
+								{% for act in acts %}
+								<tr class="d-flex">
+								
+										<td class="col-2"><a href="/actividades/ActivityDetail/{{act.id}}">{{act.activity_name}} </a></td>
+										<td class="col-4">{{act.description}}</td>
+										<td class="col-6 text-right">
+										<a href="/actividades/ActivityUpdate/{{act.id}} "><i class="material-icons">create</i></a></b>
+							
+							
+										<a href="/actividades/ActivityDelete/{{act.id}} "><i class="material-icons text-danger">clear</i></a>
+									</td>
+									</div>
+									</tr>
+									{% endfor %}
+							
+						</tbody>
+					</table>
+				
+					<br>
+
+					<table class="table table-hover header-fixed">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-9">ACTIVIDADES-PROCESSO</th>
+									<th class="col-3 text-right">
+										<a class="dropdown-toggle" id="sidebarCollapse" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="#">Mais antigo</a>
+											<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+											<a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+										</div>
+									</th>
+								</tr>
+									{% if proc_acts|length > 0 %}
+								<tr class="d-flex nobluebar">
+									<td class="col-2"><b>Actividade:</b> </td>
+									<td class="col-4"><b>Processo: </b></td>
+									
+								</tr>
+								{% endif %}
+						</thead>
+							<tbody class="proctable">
+									{% for act in proc_acts %}
+									<tr class="d-flex">
+									
+											<td class="col-2"><a href="/actividades/ActivityDetail/{{act.id}}">{{act.activity_name}} </a></td>
+											<td class="col-4"><a href="/processos/ProcessDetail/{{act.process.id}}">{{act.process}}</a></td>
+											<td class="col-6 text-right">
+													{% if perms.Users.test_GProc %}
+													<a href="/actividades/ActivityUpdate/{{act.id}} "><i class="material-icons">create</i></a></b>
+								
+											<a href="/actividades/ActivityDelete/{{act.id}} "><i class="material-icons text-danger">clear</i></a>
+										{% endif %}
+										</td>
+										</div>
+										</tr>
+										{% endfor %}
+								
+							</tbody>
+						</table>
+            </div>
+		</div>
+	</div>
+		
+
+				{% else %}
+				<h2>Não tem permissão para visualizar esta página.</h2>
+				{% endif %}	
+	{% endblock %}

@@ -1,0 +1,26 @@
+<div class="container">
+{% csrf_token %}
+    {% if related %}
+    <h4 class="text-danger">Não é possível apagar este verbo pois econtra-se associado a frases </h4>
+    {% else %}
+    Tem a certeza que deseja eliminar o Verbo?<br><br>
+    <p>{{ object.verbname }}</p>
+    {% endif %}
+</div>
+{% if related %}
+<p class="text-danger mt-5">Este verbo está associado às seguintes frases </p>
+    {% for g in groups %}
+    
+    {% if object == g.verbid %}
+    
+    <p>{{g}}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+<div class="modal-footer">
+    <a class="text-danger mr-3" href="" data-dismiss="modal">Cancelar</a>
+    {% if related %}
+    {% else %}
+    <button type="submit" class="btn text-white">Eliminar</button>   
+    {% endif %}
+</div>

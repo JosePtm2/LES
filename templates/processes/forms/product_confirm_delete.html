@@ -1,0 +1,14 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+{% if perms.Users.test_GProc %}   
+<div class="container">
+<form method="post">{% csrf_token %}
+    <p>De certeza que pretende eliminar o produto <b>"{{ object.product_name}}</b>"?</p>
+    <a href="/produtos" class="text-danger">Cancelar</a>
+    <button type="submit" class="btn text-white">Eliminar</button>
+</form>
+</div>
+{% else %}
+<h2>Não tem permissão para realizar esta ação.</h2>
+{% endif %}
+{% endblock %}

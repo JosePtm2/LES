@@ -1,0 +1,113 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+
+{% if perms.Users.test_Admin or object.id == logged_user.id %}
+
+<div class="container">
+    {% include "processes/includes/messages.html" %}
+<h3>Nome: {{object.username}}</h3>
+<hr>
+    <div class="row">
+        <div class="col-sm-2">Email: </div> 
+        <div class="col-sm-2"> {{object.email}}</div>
+        </div>
+        <hr>
+ <div class="row">
+        <div class="col-sm-2"> Empresa:</div>
+        <div class="col-sm-2">{{object.organization}}</div>
+    </div>
+  <hr>
+    <div class="row">
+        <div class="col-sm-2">Perfis: </div>
+{% for group in object.groups.all %}
+<div class="col-sm-1">{{group.name}}</div>
+{% endfor %}
+
+</div>
+<br>
+{% if perms.Users.test_Admin %}
+<a href="/utilizadores/UserUpdate/{{object.id}}"><button type="button" class="btn text-white" >Editar user </button></a>
+<br>
+{% endif %}
+{% if object.id == logged_user.id %}
+<a href="/utilizadores/UserChangePassword/{{object.id}}"> Alterar Password </a>
+<br>
+<a href="/utilizadores/UserUpdateEmail/{{object.id}}"> Alterar Email </a>
+<br>
+{% endif %}
+
+
+<br>
+{% if perms.Users.test_Analist %}
+<h3>Padrões do utilizador</h3>
+<hr>
+<div class="row legendrow">
+  <div class="col-sm-3"> <b>Padrão: </b></div>
+  <div class="col-sm-3"><b> Data de criação:</b></div>
+</div>
+
+{% for pat in patts %}
+<div class="row">
+<div class="col-sm-3">{{pat}} </div>
+<div class="col-sm-4">{{pat.data_creation}}</div>
+</div>
+
+{% endfor %}
+
+<hr>
+<br>
+{% endif %}
+{% if perms.Users.test_Func %}
+<h3>Frases do utilizador</h3>
+<div class="row legendrow">
+    <div class="col-sm-3"> Frase:</div>
+    <div class="col-sm-3"> Sujeito:</div>
+    <div class="col-sm-3"> Receptor:</div>
+    <div class="col-sm-3"> Data de criação:</div>
+  </div>
+<hr>
+<br>
+{% for sent in sentecs %}
+<div class="row">
+<div class="col-sm-3">{{sent}} </div>
+<div class="col-sm-3">{{sent.subject}}</div>
+<div class="col-sm-3">{{sent.subject}}</div>
+<div class="col-sm-3">{{sent.data_creation}}</div>
+</div>
+<hr>
+{% endfor %}
+{% endif %}
+
+{% if perms.Users.test_GProc %}
+
+<h3>Processos do utilizador</h3>
+<hr>
+<div class="row legendrow">
+  <div class="col-sm-3"> Processo:</div>
+  <div class="col-sm-3"> Data de criação:</div>
+</div>
+{% for proc in procs %}
+{% if proc.user.id == object.id %}
+
+<div class="row">
+
+<div class="col-sm-3"><a href="/processos/ProcessDetail/{{proc.id}}">{{proc}}</a></div>
+<div class="col-sm-3">{{proc.creation_date}}</div>
+<div class="col-sm-2"><a href="/processos/ProcessUpdate/{{proc.id}}">Editar</a></div>
+
+</div>
+
+{% endif %}
+{% endfor %}
+<hr>
+<br>
+{% endif %}
+
+
+
+</div>
+
+{% else %}
+<h1>Não tem permissão para ver esta página.</h1>
+{% endif %}
+{% endblock %}

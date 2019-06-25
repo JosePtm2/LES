@@ -1,0 +1,33 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+{% if perms.Users.test_GProc  %}  
+<div class="container">
+<form method="post">{% csrf_token %}
+    {% if acts|length > 0 %}
+    As seguintes actividades estão associadas:<br>
+    {% for act in acts %}
+    <div class="row">
+            <div class ="col-sm-6">
+            <a href ="/actividades/ActivityDetail/{{act.id}}">{{act}}</a>
+            </div>
+            <div class ="col-sm-6">
+                    <a href ="/actividades/ActivityDessociate/{{act.id}}">Dessassociar</a>
+                    </div>
+        </div>
+            <hr>
+            {% endfor %}<br>
+    <h3>Para prosseguir primeiro remova as associações listadas.</h3>
+
+    {% elif act|length == 0 %}
+    <p>Tem a certeza que pretende eliminar o Processo <b>"{{ object.process_name}}</b>"?</p>
+    <a href="/processos" class="text-danger">Cancelar</a>
+    <button type="submit" class="btn text-white">Eliminar</button>
+    {% else %}
+    <a href="/processos">Cancelar</a>
+    {% endif %} 
+</form>
+</div>
+{% else %}
+<h2>Não tem permissão para realizar esta ação.</h2>
+{% endif %}
+{% endblock %}

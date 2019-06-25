@@ -1,0 +1,133 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+{% if perms.Users.test_GProc or perms.Users.test_Analist %}
+<div class="container">
+        <h3>Actividade: {{object.activity_name}} </h3>
+        <hr>
+          <div class="row">
+            <div class="col-sm-2"> Descrição: </div>
+            <div class="col-sm-10">{{object.description}}</div>
+        </div>
+        {% if object.process != None %}
+        <hr>
+        <div class = "row">
+          <div class = "col-sm-12"> Processo associado: <a href="/processos/ProcessDetail/{{object.process.id}}">{{object.process}}</a></div>
+              </div>
+              {% endif %}
+      <hr>
+      {% if perms.Users.test_GProc or object.process == None %}
+        <p><a href="/actividades/ActivityUpdate/{{object.id}}"> <button type="button" class="btn text-white">Editar actividade</button></a></p>
+        <br>
+{% endif %}
+        {% if patterns|length > 0 or non_patterns|length > 0 %}
+<div class = "row">
+  <div class = "col-sm-6"> <h3>Padrões associados à actividade:</h3></div>
+  <div class = "col-sm-6"> <h3>Padrões não associados:</h3></div>
+      </div>
+        <hr>
+        <div class ="row">
+        <div class = "col-sm-6  colseparator" >
+        {% for pat in patterns %}
+        <div class="row">
+        <div class="col-sm-5"><a href="#">{{pat}}</a></div>
+        <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewPattern" pat.id %}", "Ver Padrão", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;&nbsp;</a>
+        <a href="/actividades/PatternDessociate/{{object.id}}/{{pat.id  }}"><i class="material-icons text-danger">clear</i>&nbsp;</a></div>
+        </div>
+        {% endfor %}</div>
+        <div class = "col-sm-6">
+            {% for pat in non_patterns %}
+            <div class="row">
+            <div class="col-sm-5"><a href="#">{{pat}}</a></div>
+            <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewPattern" pat.id %}", "Ver Padrão", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;&nbsp;</a>
+            <a href="/actividades/PatternAssociate/{{object.id}}/{{pat.id}}"><i class="material-icons text-success">add</i>&nbsp;</a></div>
+            </div>
+            {% endfor %}</div></div>
+        <hr>
+        <br>
+
+        {% endif %}
+
+    {% if act_products|length > 0 or non_products|length > 0 %}
+        <div class = "row">
+            <div class = "col-sm-6"> <h3>Produtos associados à actividade:</h3></div>
+            <div class = "col-sm-6"> <h3>Produtos não associados:</h3></div>
+                </div>
+        <hr>
+
+        <div class ="row">
+            <div class = "col-sm-6  colseparator" >
+        {% for product in act_products %}
+        <div class="row">
+        <div class="col-sm-5"> <a href="/produtos/ProductDetail/{{product.id}}">{{product}}</a></div>
+        <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewProduct" product.id %}", "Ver Produto", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;&nbsp;</a>
+        <a href="/produtos/ProductDessociate/{{product.id}}/{{object.id}}"><i class="material-icons text-danger">clear</i>&nbsp;</a></div>
+        </div>
+        {% endfor %}</div>
+        <div class = "col-sm-6" >
+            {% for product in non_products %}
+            <div class="row">
+            <div class="col-sm-5"><a href="/produtos/ProductDetail/{{product.id}}">{{product}}</a></div>
+            <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewProduct" product.id %}", "Ver Produto", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;&nbsp;</a>
+            <a href="/produtos/ProductAssociate/{{product.id}}/{{object.id}}"><i class="material-icons text-success">add</i>&nbsp;</a></div>
+            </div>
+            {% endfor %}</div>
+          
+      </div>
+
+        <hr>
+        <br>
+        {% endif %}
+        {% if roles|length > 0 or non_roles|length > 0 %}
+        <div class = "row">
+            <div class = "col-sm-6"> <h3>Papéis associados à actividade:</h3></div>
+            <div class = "col-sm-6"> <h3>Papéis não associados:</h3></div>
+                </div>
+        <hr>
+        <div class ="row">
+            <div class = "col-sm-6  colseparator" >
+        {% for rol in roles %}
+        <div class="row">
+            <div class="col-sm-5"><a href="/papeis/RoleDetail/{{rol.id}}">{{rol}}</a></div>
+            <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewRole" rol.id %}", "Ver Papel", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;</a>
+                {% if perms.Users.test_GProc %} <a href="/actividades/RoleDessociate/{{object.id}}/{{rol.id}}"><i class="material-icons text-danger">clear</i>&nbsp;</a>{% endif %}</div>
+        </div>
+        {% endfor %}</div>
+        <div class = "col-sm-6" >
+            {% for rol in non_roles %}
+            <div class="row">
+            <div class="col-sm-5"><a href="/papeis/RoleDetail/{{rol.id}}">{{rol}}</a></div>
+            <div class="col-sm-7 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewRole" rol.id %}", "Ver Papel", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;</a>
+                {% if perms.Users.test_GProc %} <a href="/actividades/RoleAssociate/{{object.id}}/{{rol.id}}"><i class="material-icons text-success">add</i>&nbsp;</a>{% endif %}</div>
+            </div>
+            {% endfor %}</div>
+      
+      </div>
+      <hr>
+        <br>
+        {% endif %}
+        {% if object.process == None and procs|length > 0 %}
+        <div class = "row">
+          <div class = "col-sm-12"> <h3>Processos a associar:</h3></div>
+              </div>
+      <hr>
+
+      {% for proc in procs %}
+      <div class="row">
+          <div class="col-sm-3"><a href="/processos/ProcessDetail/{{proc.id}}">{{proc}}</a></div>
+          <div class="col-sm-3 text-right"><a data-toggle="modal" onclick='newModal("{% url "processes:ViewProcess" proc.id %}", "Ver Processo", "#Viewmodal", "")' href=''><i class="material-icons">search</i>&nbsp;</a>
+            {% if perms.Users.test_GProc %}  <a href="/actividades/ActivitySwap/{{object.id}}/{{proc.id}}"><i class="material-icons text-success">add</i>&nbsp;</a>{% endif %}</div>
+      </div>
+      {% endfor %}
+
+      {% endif %}
+    </div>
+
+
+        
+
+        <hr>
+        <br>
+        {% else %}
+        <h2>Não tem permissão para visualizar esta página.</h2>
+        {% endif %}
+        {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "main/header.html" %}
+
+{% block navbar %}
+
+				
+	
+				{% include "main/navbar.html" %}
+			
+				
+				
+		
+				{% if perms.Users.test_GProc or  perms.Users.test_Analist %}
+				{% include "processes/includes/gp_main_area.html" %}
+				{% elif perms.Users.test_Admin %}
+				{% include "processes/includes/admin_main_area.html" %}
+				{% endif %}
+			
+	
+{% endblock %}

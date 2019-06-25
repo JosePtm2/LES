@@ -1,0 +1,34 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+{% if perms.Users.test_Admin %}  
+<div class="container">
+<form method="post">{% csrf_token %}
+
+    {% if org_users|length > 0 %}
+    <h3>Antes de apagar a empresa, necessita remover os seguintes utilizadores desta ou do sistema.</h3>
+    <br>
+    {% for utilizador in org_users %}
+    <div class ="row" >
+        <div class ="col-sm-3">
+            <a href ="/utilizadores/UserDetail/{{utilizador.id}}">Utilizador: &nbsp;{{utilizador}}</a>
+        </div>   
+        <div class ="col-sm-4">
+            Email: &nbsp;   {{utilizador.email}}
+                        </div>       
+</div>
+{% endfor %}
+<br>
+{% endif %}
+    {% if org_users|length == 0 %}
+    <p>De certeza que pretende eliminar a empresa <b>"{{ object.name}}</b>"?</p>
+    <a href="/empresas" class="text-danger">Cancelar</a>
+    <button type="submit" class="btn text-white">Eliminar</button>
+    {% else %}
+    <a href="/empresas" class="text-danger">Cancelar</a>
+    {% endif %}
+</form>
+</div>
+{% else %}
+<h2>Não tem permissão para realizar esta ação.</h2>
+{% endif %}
+{% endblock %}

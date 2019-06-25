@@ -1,0 +1,21 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+
+
+<div class="container">
+
+    {% if perms.Users.test_Admin and object.id != logged_user.id %}
+
+<form method="post">{% csrf_token %}
+    <p>Tem a certeza que pretende eliminar o utilizador <b>"{{ object.username}}</b>"?</p>
+    <a href="/utilizadores" class="text-danger">Cancelar</a>
+<button type="submit" class="btn text-white">Eliminar</button>
+</form>
+</div>
+
+
+{% else %}
+<h2> Não tem permissão para fazer esta acção.</h2>
+
+{% endif %}
+{% endblock %}

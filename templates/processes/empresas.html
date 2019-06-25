@@ -1,0 +1,10 @@
+{% extends "main/navbar.html" %}
+{% block content %}
+				{% if perms.Users.test_Admin %}
+				{% include "processes/includes/admin_org_area.html" %}
+			
+			
+				{% else %}
+				<h2>Não tem permissão para visualizar esta página.</h2>
+				{% endif %}	
+{% endblock %}

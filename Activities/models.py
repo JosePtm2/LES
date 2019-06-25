@@ -55,9 +55,11 @@ class Sentence(models.Model):
     subject = models.CharField(db_column='Subject', max_length=255, verbose_name="Sujeito")
     receiver = models.CharField(db_column='Receiver', max_length=255, blank=True, null=False, verbose_name="Recetor")
     datarealizado = models.DateField(db_column='DataRealizado',blank=True, null=True)
-    verbid = models.ForeignKey('Verb', models.DO_NOTHING, db_column='VerbID', verbose_name="Verbo")
+    verbid = models.ForeignKey('Verb', models.DO_NOTHING, db_column='VerbID', verbose_name="Verbo", blank=True, null=True)
     resourceid = models.ForeignKey('Resource', models.SET_NULL, db_column='ResourceID', verbose_name="Recurso", null=True, blank=True)
-    artefactid = models.ForeignKey('Artefact', models.SET_NULL, db_column='ArtefactID', verbose_name="Artefacto", null=True, blank=True) 
+    artefactid = models.ForeignKey('Artefact', models.SET_NULL, db_column='ArtefactID', verbose_name="Artefacto", null=True, blank=True)
+
+    verb_sug = models.CharField(db_column='VerbSug', max_length=255, verbose_name="Verbo Sugerido", blank=True)
 
     class Meta:
         managed = True

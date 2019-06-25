@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
     path('', views.Home, name='home'),
-    path('main/search/', views.SearchView.as_view(), name='search'),
-    path('main/search_results/', views.SearchResultsView.as_view(),
+    path('search/', views.SearchView.as_view(), name='search'),
+    path('search_results/', views.SearchResultsView.as_view(),
          name='search_results'),
 ]

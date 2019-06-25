@@ -10,7 +10,11 @@
             <h6 class="mt-4">Sujeito:</h6>
             <p>{{object.subject}}</p>
             <h6 class="mt-4">Verbo:</h6>
+            {% if object.verbid %}
             <p>{{object.verbid}}</p>
+            {% else %}
+            <p>{{object.verb_sug}}</p>
+            {% endif %}
             <h6 class="mt-4">Recetor:</h6>
             <p>{{object.receiver}}</p>
             <h6 class="mt-4">Recurso:</h6>

@@ -24,7 +24,12 @@
                     {% if perms.Activities.add_group and request.path == '/sentences/' %}<td class="d-block col-1"><input onclick="this.checked=!this.checked;" type="checkbox" name="markerType" id="{{ frase.id }}" class="mt-1"/></td>{% endif %}
                     <td class="d-block col-2"><a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg");' id="noCheck" href="" >{{ frase.datarealizado }}</a></td>
                     <td class="d-block col-2"><a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg");' id="noCheck" href="" >{{ frase.subject }}</a></td>
-                    <td class="d-block col-2"><a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg");' id="noCheck" href="" >{{ frase.verbid }}</a></td>
+                    <td class="d-block col-2"><a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg");' id="noCheck" href="" >            {% if frase.verbid %}
+            <p>{{frase.verbid}}</p>
+            {% else %}
+            <p>{{frase.verb_sug}} {% if perms.Users.test_Analist %} <a data-toggle="modal" onclick='newModal("{% url "verb_create" %}", "Novo Verbo", "#modal", "")' href=""><i class="material-icons mr-2">add</i></a>{% endif %}</p>
+            {% endif %}
+</a></td>
                     <td class="d-block{% if perms.Users.test_Analist and request.path == '/sentences/' %} col-2{% else %} col-3{% endif %}"><a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg");' id="noCheck" href="" >{{ frase.receiver }}</a></td>
                     <td class="d-block col-2 text-right">{{ frase.datecreated }}</td>
                     <td class="d-block col-1 text-right">

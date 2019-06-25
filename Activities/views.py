@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Verb, Sentence, Group, Pattern, Resource, Artefact
+from .forms import SentenceForm
 from django.utils import timezone
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
@@ -79,11 +80,24 @@ class CreateVerb(AjaxableResponseMixin, CreateView):
     model = Verb
     fields = ['verbname', 'verbtype']
     success_url = reverse_lazy('verb_list')
+
     def form_valid(self, form):
         form.instance.datecreated = timezone.now()
         form.instance.userid = self.request.user
+        form.instance.save()
+
+        q = Sentence.objects.filter(
+            verb_sug__icontains=form.instance.verbname).filter(
+                userid__organization=self.request.user.organization)
+
+        print(q)
+        print(form.instance)
+        for sentence in q:
+            sentence.verbid = form.instance
+            sentence.save()
+
         return super(CreateVerb, self).form_valid(form)
-        
+
 
 class UpdateVerb(AjaxableResponseMixin, UpdateView):
     model = Verb
@@ -139,23 +153,27 @@ YEAR_CHOICES = ['2000', '2001', '2002', '2003', '2004', '2005', '2006',
                       '2007', '2008', '2009', '2010', '2011', '2012', '2013',
                       '2014', '2015', '2016', '2017', '2018', '2019']
 
+
 class CreateSentence(AjaxableResponseMixin, CreateView):
     model = Sentence
-    fields = ['sentencename', 'subject' , 'verbid', 'receiver', 'resourceid', 'artefactid', 'datarealizado']
+    form_class = SentenceForm
+
     def form_valid(self, form):
         form.instance.datecreated = timezone.now()
         if not form.instance.datarealizado:
             form.instance.DataRealizado = timezone.now()
         form.instance.userid = self.request.user
         return super(CreateSentence, self).form_valid(form)
-    success_url = reverse_lazy('sentence_list')    
+
     def get_form(self, form_class=None):
         if form_class is None:
             form_class = self.get_form_class()
         form = super(CreateSentence, self).get_form(form_class)
-        form.fields['datarealizado'] = forms.DateField(widget=forms.SelectDateWidget(years=YEAR_CHOICES))
-        return form 
-    
+        form.fields['datarealizado'] = forms.DateField(
+            widget=forms.SelectDateWidget(years=YEAR_CHOICES))
+        return form
+
+    success_url = reverse_lazy('sentence_list')
 
 class UpdateSentence(AjaxableResponseMixin, UpdateView):
     model = Sentence
@@ -167,7 +185,7 @@ class DeleteSentence(DeleteView):
     success_url = reverse_lazy('sentence_list')
 
     def delete(self, request, *args, **kwargs):
-        messages.warning(self.request, f"a")
+        messages.warning(self.request, " ")
         return super(DeleteSentence, self).delete(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         context = super(DeleteSentence,self).get_context_data(**kwargs)

@@ -63,7 +63,7 @@ class SearchResultsView(ListView):
         context = super(SearchResultsView, self).get_context_data(**kwargs)
 
         if not query_date_initial:
-            query_date_initial = datetime.date(2019, 1, 1)
+            query_date_initial = datetime.date(2000, 1, 1)
 
         if not query_date_final:
             query_date_final = datetime.datetime.now()

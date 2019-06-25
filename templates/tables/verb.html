@@ -29,7 +29,7 @@
             <td class="d-block col-1 text-right">
             {% if perms.Users.test_Analist %}
                 <a data-toggle="modal" onclick='newModal("{% url "verb_update" verbo.id %}", "Editar Verbo", "#modal", "")' href=""><i class="material-icons">create</i></a>
-                <a data-toggle="modal" onclick='newModal("{% url "verb_delete" verbo.id %}", "Eliminar Verbo", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "verb_delete" verbo.id %}", "Eliminar Verbo", "#deleteModalVerb", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
             {% endif %}
             </td>
         </tr>

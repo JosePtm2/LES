@@ -345,13 +345,21 @@ class CreateResource(AjaxableResponseMixin, CreateView):
     model = Resource
     fields = ['resourcename']
     success_url = reverse_lazy('resource_list')    
+
     def form_valid(self, form):
-        form.instance.datecreated = timezone.now()
-        return super(CreateResource, self).form_valid(form)
-    def form_valid(self, form):
+
+        q = Sentence.objects.filter(
+            verb_sug__icontains=form.instance.verbname).filter(
+                userid__organization=self.request.user.organization)
+
+        for sentence in q:
+            sentence.resource = form.instance
+            sentence.save()
+
         form.instance.datecreated = timezone.now()
         form.instance.userid = self.request.user
         return super(CreateResource, self).form_valid(form)
+
 
 class UpdateResource(AjaxableResponseMixin, UpdateView):
     model = Resource
@@ -398,11 +406,18 @@ class DetailArtefact(DetailView):
 class CreateArtefact(AjaxableResponseMixin, CreateView):
     model = Artefact
     fields = ['artefactname']
-    success_url = reverse_lazy('artefact_list')    
+    success_url = reverse_lazy('artefact_list')
+
     def form_valid(self, form):
-        form.instance.datecreated = timezone.now()
-        return super(CreateArtefact, self).form_valid(form)
-    def form_valid(self, form):
+
+        q = Sentence.objects.filter(
+            verb_sug__icontains=form.instance.verbname).filter(
+                userid__organization=self.request.user.organization)
+
+        for sentence in q:
+            sentence.artefact = form.instance
+            sentence.save()
+
         form.instance.datecreated = timezone.now()
         form.instance.userid = self.request.user
         return super(CreateArtefact, self).form_valid(form)
